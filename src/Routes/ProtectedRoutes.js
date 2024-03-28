@@ -14,10 +14,12 @@
 
 import React from 'react'
 import { Navigate, Route } from 'react-router-dom'
+import Home from '../Pages/Home/Home';
 
-const ProtectedRoutes = ({ isLogin, children }) => {
-    console.log(isLogin,"22")
-    return isLogin ? (
+const ProtectedRoutes = ({ token, children }) => {
+    // console.log(isLogin,"22")
+    // console.log(!token,"protect")
+    return token!==false ? (
         children
     ) : (
         <Navigate to="/" replace />

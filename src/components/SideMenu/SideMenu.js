@@ -12,13 +12,14 @@ import password1 from "../Images/password1.png"
 import logout from "../Images/logout.png"
 
 
-const SideMenu = ({isMenuVisible,setIsMenuVisible,isLogin,setIsLogin}) => {
+const SideMenu = ({isMenuVisible,setIsMenuVisible,token}) => {
     const navigate= useNavigate();
     const changeform=()=>{
           localStorage.removeItem("isLogin");
           localStorage.removeItem("token")
-          setIsLogin(false);
+        //   setIsLogin(false);
           navigate("/")
+          setIsMenuVisible(false)
           toast.success("You Have logged out succesfully")
       }
 
@@ -27,7 +28,9 @@ const SideMenu = ({isMenuVisible,setIsMenuVisible,isLogin,setIsLogin}) => {
       }
   return (
     <>
-    {isLogin &&
+    {/* {isLogin &&
+         */}
+         {token!==null && 
         <div className={`${styles.menu} ${isMenuVisible && styles.open}`} >
             <div className={styles.topbox} onClick={()=>setIsMenuVisible(!isMenuVisible)}>
 

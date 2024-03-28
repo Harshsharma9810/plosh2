@@ -11,8 +11,8 @@ import Slider from '../../components/common/Slider/Slider'
 
 
 
-const Home = ({isLogin,setIsLogin}) => {
-  console.log(isLogin,"from home")
+const Home = () => {
+  // console.log(isLogin,"from home")
   const [showRestaurantData,setShowRestaurantData] = useState([])
   const [showCuisineData,setShowCuisineData]=useState([])
   const [listactive,setListActive] =useState(true)
@@ -61,6 +61,10 @@ const Home = ({isLogin,setIsLogin}) => {
     };
     fetchData();
   }
+  // const token = localStorage.getItem("token");
+  // console.log(token,"from home")
+
+
 
   return (
     <>
@@ -197,6 +201,7 @@ const Home = ({isLogin,setIsLogin}) => {
     </div>
 }
     </div>
+      
     </>
   )
 }

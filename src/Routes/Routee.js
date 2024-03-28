@@ -13,29 +13,16 @@ import UpdateProfile from '../Pages/ProfilePage/UpdateProfile'
 
 
 const Routee = ({isMenuVisible, setIsMenuVisible}) => {
-  const [isLogin,setIsLogin] = useState(false)
-  console.log(isLogin,"1")
-
-  const temp= localStorage.getItem("isLogin") 
-  useEffect(()=>{
-    if(temp==="true"){
-      setIsLogin(true)
-    }
-  },[])
+  const token = localStorage.getItem("token")
   
-  if(isLogin===false){
-    setIsMenuVisible(false)
-  }
-
-
   return (
     <Routes>
       <Route 
         path="/" 
         element={
           <>
-            <Header isLogin={isLogin} setIsLogin={setIsLogin}/>
-            <Login isLogin={isLogin} setIsLogin={setIsLogin}/>
+            <Header token={token} />
+            <Login token={token}/>
           </>
         }
       />
@@ -43,7 +30,7 @@ const Routee = ({isMenuVisible, setIsMenuVisible}) => {
         path="/register" 
         element={
           <>
-            <Header isLogin={isLogin} setIsLogin={setIsLogin}/>
+            <Header/>
             <SignUp/>
           </>
         }
@@ -53,10 +40,10 @@ const Routee = ({isMenuVisible, setIsMenuVisible}) => {
         path="/home" 
         element={
           <>
-           <SideMenu isMenuVisible={isMenuVisible} setIsMenuVisible={setIsMenuVisible} isLogin={isLogin}setIsLogin={setIsLogin}/>
-            <Header isLogin={isLogin} setIsLogin={setIsLogin} isMenuVisible={isMenuVisible} setIsMenuVisible={setIsMenuVisible}/>
-            <ProtectedRoutes isLogin={isLogin} setIsLogin={setIsLogin} isMenuVisible={isMenuVisible} setIsMenuVisible={setIsMenuVisible}>
-              <Home isLogin={isLogin} setIsLogin={setIsLogin}/>
+           {/* <SideMenu isMenuVisible={isMenuVisible} setIsMenuVisible={setIsMenuVisible} token={token}/> */}
+            <Header isMenuVisible={isMenuVisible} setIsMenuVisible={setIsMenuVisible} token={token}/>
+            <ProtectedRoutes isMenuVisible={isMenuVisible} setIsMenuVisible={setIsMenuVisible} token={token}>
+              <Home token={token}/>
             </ProtectedRoutes>
           </>
         }
@@ -67,8 +54,8 @@ const Routee = ({isMenuVisible, setIsMenuVisible}) => {
         path="/categories" 
         element={
           <>
-           <SideMenu isMenuVisible={isMenuVisible} setIsMenuVisible={setIsMenuVisible} isLogin={isLogin}setIsLogin={setIsLogin}/>
-            <Header isLogin={isLogin} setIsLogin={setIsLogin} isMenuVisible={isMenuVisible} setIsMenuVisible={setIsMenuVisible}/>
+           {/* <SideMenu isMenuVisible={isMenuVisible} setIsMenuVisible={setIsMenuVisible} /> */}
+            <Header isMenuVisible={isMenuVisible} setIsMenuVisible={setIsMenuVisible}/>
           
               <Categories/>
             
@@ -79,8 +66,8 @@ const Routee = ({isMenuVisible, setIsMenuVisible}) => {
         path="/restaurantdetail" 
         element={
           <>
-           <SideMenu isMenuVisible={isMenuVisible} setIsMenuVisible={setIsMenuVisible} isLogin={isLogin}setIsLogin={setIsLogin}/>
-            <Header isLogin={isLogin} setIsLogin={setIsLogin} isMenuVisible={isMenuVisible} setIsMenuVisible={setIsMenuVisible}/>
+           {/* <SideMenu isMenuVisible={isMenuVisible} setIsMenuVisible={setIsMenuVisible}/> */}
+            <Header isMenuVisible={isMenuVisible} setIsMenuVisible={setIsMenuVisible}/>
           
               <RestaurantDetail/>
             
@@ -92,8 +79,8 @@ const Routee = ({isMenuVisible, setIsMenuVisible}) => {
         path="/profile" 
         element={
           <>
-           <SideMenu isMenuVisible={isMenuVisible} setIsMenuVisible={setIsMenuVisible} isLogin={isLogin}setIsLogin={setIsLogin}/>
-            <Header isLogin={isLogin} setIsLogin={setIsLogin} isMenuVisible={isMenuVisible} setIsMenuVisible={setIsMenuVisible}/>
+           {/* <SideMenu isMenuVisible={isMenuVisible} setIsMenuVisible={setIsMenuVisible} /> */}
+            <Header isMenuVisible={isMenuVisible} setIsMenuVisible={setIsMenuVisible}/>
               <UpdateProfile/>
             
           </>
@@ -105,7 +92,7 @@ const Routee = ({isMenuVisible, setIsMenuVisible}) => {
         path="/forgot" 
         element={
           <>
-            <Header isLogin={isLogin} setIsLogin={setIsLogin}/>
+            <Header/>
             <Forgot/>
           </>
         }

@@ -14,10 +14,10 @@ function App() {
 
   return (
     <div className="App">
-      {/* <SideMenu isMenuVisible={isMenuVisible} setIsMenuVisible={setIsMenuVisible} isLogin={isLogin}setIsLogin={setIsLogin}/> */}
+      <SideMenu isMenuVisible={isMenuVisible} setIsMenuVisible={setIsMenuVisible} />
 
       <ToastContainer position="top-center" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="light"/>
-
+      
       <Routee isMenuVisible={isMenuVisible} setIsMenuVisible={setIsMenuVisible}/> 
     </div>
   );

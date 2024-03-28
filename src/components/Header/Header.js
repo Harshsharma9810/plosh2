@@ -20,23 +20,25 @@ const menuItems = [
   { icon: user, text: 'Profile', link: '/profile' }
 ];
 
-const Header = ({isMenuVisible, setIsMenuVisible,isLogin,setIsLogin}) => {    
+const Header = ({isMenuVisible, setIsMenuVisible}) => {    
 
   // console.log(isLogin,"from header")
     let location = useLocation();
     const navigate = useNavigate()
     const changeform=()=>{
-      if (isLogin===false){
-        location.pathname==="/" ? navigate("/register") : navigate("/")
+      (location.pathname==="/" ? navigate("/register") : navigate("/"))
+      // (LoginPage===true)
+      //    ? navigate("/") : navigate("/register")
+      //    setLoginPage(!LoginPage)
         // setIsMenuVisible(false)
-      }
-      else{
-        localStorage.removeItem("isLogin");
-        setIsLogin(false);
+      
+      // else{
+        // localStorage.removeItem("isLogin");
+        // setIsLogin(false);
         // setIsMenuVisible(false)
-        navigate("/")
-        toast.success("You Have logged out succesfully")
-      }
+        // navigate("/")
+        // toast.success("You Have logged out succesfully")
+      // }
     }
 
 
@@ -48,29 +50,26 @@ const Header = ({isMenuVisible, setIsMenuVisible,isLogin,setIsLogin}) => {
     
     const openMenu=(e)=>{
       setIsMenuVisible(!isMenuVisible)
+      console.log(isMenuVisible,"IAM ")
       e.preventDefault(); 
     }
+  const token = localStorage.getItem("token")
       
   return (
     <>
-    {!isLogin ? 
+    {token===null?
     <div className={styles.header}>
-        <div className={styles.logodiv}>
-          <img src={plosh} alt='plosh' className={styles.logo}/>
-        </div>
-        <div className={styles.logodiv}>
-          <Button btntext={location.pathname==="/"? "Register" : "Login"} handleClick={changeform}/>
-        </div>
-    </div> 
-
-      :
-
-    <div className={styles.header1}>
+    <div className={styles.logodiv}>
+      <img src={plosh} alt='plosh' className={styles.logo}/>
+    </div>
+    <div className={styles.logodiv}>
+      <Button btntext={location.pathname==="/"? "Register" : "Login"} handleClick={changeform}/>
+    </div>
+</div>  :
+      <div className={styles.header1}>
       <div className={styles.logodiv1}>
         <img src={plosh} alt='plosh' className={styles.logo1}/>
       </div>
-
-      
 
       <div className={styles.right}>
             {menuItems.map((item, index) => (
@@ -85,6 +84,14 @@ const Header = ({isMenuVisible, setIsMenuVisible,isLogin,setIsLogin}) => {
             </div>
         </div>
     </div>
+    
+
+     
+    
+
+      
+
+  
     }
     </>
   

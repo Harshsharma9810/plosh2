@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from "./Login.module.scss"
 import { useForm} from "react-hook-form";
 import InputBox from '../../components/InputBox/InputBox';
@@ -14,9 +14,7 @@ import ClipLoader from "../../components/common/Spinner"
 
 
 
-const Login = ({isMenuVisible,setIsMenuVisible,isLogin,setIsLogin}) => {
-
-  console.log(isLogin,"before login")
+const Login = ({token}) => {
   const [loader,setLoader] = useState(false)
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
@@ -42,7 +40,6 @@ const { control,handleSubmit,formState: { errors }} = useForm({
 resolver: yupResolver(schema),});
 
   const onSubmit =(values)=>{    
-    // console.log(data)
     login(values)
   }
 
@@ -58,11 +55,8 @@ resolver: yupResolver(schema),});
         
         if(response?.success){
           toast.success(response?.message)
-          navigate("/home")
-          setIsLogin(true)
-          localStorage.setItem("isLogin",true);
-          // console.log(response.token,"i am from tokenresponse")
           localStorage.setItem("token",response.token);
+          navigate("/home")
         }
         else{
           toast.error(response.message)
@@ -75,9 +69,9 @@ resolver: yupResolver(schema),});
         setLoader(false)
       }
   }
-
+ 
   return (
-    
+    <>
       <div className={styles.loginbox}>
       <img src={plosh} alt='plosh' className={styles.img}/>
         <h1 className={styles.heading}>Login</h1>
@@ -91,8 +85,6 @@ resolver: yupResolver(schema),});
             <InputBox name="email"  control={control} required type="text"/>
           </div>
           <p className={styles.error}>{errors.email?.message}</p>
-
-          
 
           <div className={styles.address}>
             <label className={styles.label}>Password</label>
@@ -115,9 +107,11 @@ resolver: yupResolver(schema),});
       </form>
         <div className={styles.toggleform}>Dont have an account ? <span onClick={()=>{navigate("/register")}} className={styles.togglespan}>Register</span></div>
       </div>
+    </>
     
-
   )
 }
 
 export default Login
+
+
