@@ -7,20 +7,18 @@ import cancel from "../../components/Images/cancel.png"
 import SimpleMap from '../../components/common/SimpleMap'
 import { API } from '../../API/APIS';
 import RestaurantCard from '../../components/RestaurantCard/RestaurantCard'
+import Slider from '../../components/common/Slider/Slider'
 
 
 
-const Home = ({isLogin,setIsLogin,text}) => {
-  console.log(isLogin,"3")
+const Home = ({isLogin,setIsLogin}) => {
+  console.log(isLogin,"from home")
   const [showRestaurantData,setShowRestaurantData] = useState([])
   const [showCuisineData,setShowCuisineData]=useState([])
-  
-
   const [listactive,setListActive] =useState(true)
   const [listactive1,setListActive1] =useState(false)
   const [showFilterMenu,setShowFilterMenu] = useState(false)
-  const cuisines = ['French', 'Indian','Chinese', 'Italian','Thai','Japanese','Mexican','Lebanese', 'Caribbean','Korean'];
-
+ 
   const handlelist=()=>{
     setListActive(!listactive)
     setListActive1(!listactive1)
@@ -64,22 +62,8 @@ const Home = ({isLogin,setIsLogin,text}) => {
     fetchData();
   }
 
-//   useEffect(() => {
-//     const token = localStorage.getItem("token");
-//     const fetchData = async () => {
-//         try {
-//             const response = await API.cuisineList(token);
-//             console.log(response);
-//             setShowCuisineData(response.data);
-//         } catch (error) {
-//             console.log(error);
-//         }
-//     };
-//     fetchData();
-// },[showFilterMenu])
   return (
     <>
-    
     
     <div className={styles.home}>
 
@@ -136,15 +120,16 @@ const Home = ({isLogin,setIsLogin,text}) => {
                     <h2 className={styles.sort}>Sort by rating</h2>
                     <div className={styles.info}>
                         <div className={styles.auth}>
-                            <div className={styles.head}>Authenticity</div>
-                            <div className={styles.barnum}>
+                            <div className={styles.head}>Authenticity <Slider/></div>
+                            {/* <div className={styles.barnum}>
 
                                 <div className={styles.bar}>
                                 <div className={styles.barspan} style={{ width: `80%` }}></div>
-                                {/* <div className={styles.barspan} style={{ width: `${AuthenticityPercentage}%` }}></div> */}
+                              
                                 </div>
                                 <div className={styles.num}>08</div>
-                            </div>
+                            </div> */}
+                            
                         </div>
                         <div className={styles.auth}>
                             <div className={styles.head}>Taste</div>
@@ -152,7 +137,7 @@ const Home = ({isLogin,setIsLogin,text}) => {
                                 <div className={styles.bar}>
                                     <div className={styles.barspan} style={{  width: `90%` }}></div>
                                 </div>
-                                <div className={styles.num}>09</div>
+                                <div className={styles.num}>9</div>
                             </div>
                         </div>
                 

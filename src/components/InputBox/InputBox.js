@@ -25,7 +25,7 @@ import React from 'react'
 import styles from './InputBox.module.scss'
 import { Controller } from "react-hook-form";
 
-const InputBox = ({ control, placeholder, name, type, handleKey, handleChange }) => {
+const InputBox = ({ control, placeholder, name, type, handleKey, handleChange,defaultValue,readOnly }) => {
  
   return (
     
@@ -33,7 +33,7 @@ const InputBox = ({ control, placeholder, name, type, handleKey, handleChange })
       <Controller
         name={name} 
         control={control}
-        defaultValue=""
+        defaultValue={defaultValue}
         render={({ field }) => (
           <input
             {...field}
@@ -42,6 +42,7 @@ const InputBox = ({ control, placeholder, name, type, handleKey, handleChange })
             type={type} 
             onKeyDown={handleKey}
             onChange={(e) => {field.onChange(e.target.value.trim().replace(/\s+/g, ''));}}
+            readOnly={readOnly}
           />
           
         )}

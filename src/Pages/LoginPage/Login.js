@@ -15,12 +15,8 @@ import ClipLoader from "../../components/common/Spinner"
 
 
 const Login = ({isMenuVisible,setIsMenuVisible,isLogin,setIsLogin}) => {
-  // const [isLogin,setIsLogin] = useState(false)
 
-  // console.log(isMenuVisible,"before Login")
-  
-
-  // console.log(isLogin,"from login")
+  console.log(isLogin,"before login")
   const [loader,setLoader] = useState(false)
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);

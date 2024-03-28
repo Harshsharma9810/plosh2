@@ -16,11 +16,10 @@ import React from 'react'
 import { Navigate, Route } from 'react-router-dom'
 
 const ProtectedRoutes = ({ isLogin, children }) => {
+    console.log(isLogin,"22")
     return isLogin ? (
-        // Render children (protected content) only if the user is logged in
         children
     ) : (
-        // Redirect to the login page if the user is not logged in
         <Navigate to="/" replace />
     );
 }

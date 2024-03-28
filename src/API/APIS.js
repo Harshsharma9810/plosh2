@@ -133,7 +133,7 @@ async getProfile(token){
         },
       }
     )
-    console.log(response)
+    // console.log(response)
     return response?.data
   }
   catch(error){

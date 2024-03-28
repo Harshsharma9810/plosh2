@@ -16,18 +16,17 @@ const Routee = ({isMenuVisible, setIsMenuVisible}) => {
   const [isLogin,setIsLogin] = useState(false)
   console.log(isLogin,"1")
 
+  const temp= localStorage.getItem("isLogin") 
+  useEffect(()=>{
+    if(temp==="true"){
+      setIsLogin(true)
+    }
+  },[])
+  
   if(isLogin===false){
     setIsMenuVisible(false)
   }
 
-  useEffect(()=>{
-    const temp= localStorage.getItem("isLogin") 
-    console.log(temp,"from useffect")
-
-    if(temp==="true"){
-     setIsLogin(true)
-    }
- },[])
 
   return (
     <Routes>
@@ -57,41 +56,46 @@ const Routee = ({isMenuVisible, setIsMenuVisible}) => {
            <SideMenu isMenuVisible={isMenuVisible} setIsMenuVisible={setIsMenuVisible} isLogin={isLogin}setIsLogin={setIsLogin}/>
             <Header isLogin={isLogin} setIsLogin={setIsLogin} isMenuVisible={isMenuVisible} setIsMenuVisible={setIsMenuVisible}/>
             <ProtectedRoutes isLogin={isLogin} setIsLogin={setIsLogin} isMenuVisible={isMenuVisible} setIsMenuVisible={setIsMenuVisible}>
-              <Home/>
+              <Home isLogin={isLogin} setIsLogin={setIsLogin}/>
             </ProtectedRoutes>
           </>
         }
       />
 
 
-<Route 
+      <Route 
         path="/categories" 
         element={
           <>
            <SideMenu isMenuVisible={isMenuVisible} setIsMenuVisible={setIsMenuVisible} isLogin={isLogin}setIsLogin={setIsLogin}/>
             <Header isLogin={isLogin} setIsLogin={setIsLogin} isMenuVisible={isMenuVisible} setIsMenuVisible={setIsMenuVisible}/>
+          
               <Categories/>
+            
           </>
         }
       />
-<Route 
+      <Route 
         path="/restaurantdetail" 
         element={
           <>
            <SideMenu isMenuVisible={isMenuVisible} setIsMenuVisible={setIsMenuVisible} isLogin={isLogin}setIsLogin={setIsLogin}/>
             <Header isLogin={isLogin} setIsLogin={setIsLogin} isMenuVisible={isMenuVisible} setIsMenuVisible={setIsMenuVisible}/>
+          
               <RestaurantDetail/>
+            
           </>
         }
       />
 
-<Route 
+      <Route 
         path="/profile" 
         element={
           <>
            <SideMenu isMenuVisible={isMenuVisible} setIsMenuVisible={setIsMenuVisible} isLogin={isLogin}setIsLogin={setIsLogin}/>
             <Header isLogin={isLogin} setIsLogin={setIsLogin} isMenuVisible={isMenuVisible} setIsMenuVisible={setIsMenuVisible}/>
               <UpdateProfile/>
+            
           </>
         }
       />
