@@ -1,10 +1,9 @@
-import { Axios } from 'axios';
 import {AxiosInstance} from './AxiosInstance'
 
 
 export const API ={
 
-  //For login
+  //Login User
    async login(params){
     try {
       const response = await AxiosInstance.post("/user/login",{...params})
@@ -18,7 +17,7 @@ export const API ={
   },
 
 
-  //For Creating user
+  //Creating user
   async createUser(params){
     try{
       // console.log(params,"slsk")
@@ -47,7 +46,6 @@ export const API ={
 
 
   //Restaurant List
-
   async restaurantList(token){
     try {
       const response = await AxiosInstance.post("/restaurant/LIST")
@@ -78,8 +76,8 @@ export const API ={
   }
 },
 
-//Cuisine list
 
+//Cuisine list
 async cuisineList (params,token){
   try {
     const response = await AxiosInstance.get("/cuisine/list",{
@@ -94,8 +92,8 @@ async cuisineList (params,token){
   }
 },
 
-//Update Profile
 
+//Update Profile
 async updateProfile(params,token){
   // console.log(params.file,"3")
   const formData = new FormData()
@@ -122,9 +120,9 @@ async updateProfile(params,token){
 },
 
 
-//Get Profile
-
+//Get Profile Details
 async getProfile(token){
+
   try{
     const response = await AxiosInstance.get("/user/detail",
       {
@@ -137,11 +135,30 @@ async getProfile(token){
     return response?.data
   }
   catch(error){
+    return error?.response?.data;
+
     console.log(error)
   }
+},
+
+// Change Password
+async ChangePassword(params,token){
+  console.log(params,"3")
+  try {
+    const response = await AxiosInstance.post("user/change_password",{...params},
+    {
+      headers:{
+        "x-access-token":token
+      },
+    }
+    )
+    console.log(response?.data?.message,"4")
+    return response?.data
+  } catch (error) {
+    console.log(error)
+    return error?.response?.data
+  }
 }
-
-
 
 }
 

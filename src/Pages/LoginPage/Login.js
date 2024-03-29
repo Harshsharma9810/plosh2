@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, {useState } from 'react'
 import styles from "./Login.module.scss"
 import { useForm} from "react-hook-form";
 import InputBox from '../../components/InputBox/InputBox';
@@ -14,7 +14,7 @@ import ClipLoader from "../../components/common/Spinner"
 
 
 
-const Login = ({token}) => {
+const Login = () => {
   const [loader,setLoader] = useState(false)
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);

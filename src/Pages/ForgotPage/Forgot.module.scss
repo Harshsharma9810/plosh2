@@ -1,7 +1,7 @@
 .forgot{
     // height: 600px;
     width: 33%;
-    border: 1px solid black;
+    // border: 1px solid black;
     align-items: center;
     margin: auto;
     margin-top: 40px;
@@ -10,6 +10,7 @@
     border-radius: 10px;
     @media screen and (max-width:898px) {
         width: 50%;
+        border:none
     }
     @media screen and (max-width:604px) {
         width: 80%;

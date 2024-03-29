@@ -1,7 +1,7 @@
 .loginbox{
     // height: max-content;
     width: 38%;
-    border: 1px solid black;
+    // border: 1px solid black;
     align-items: center;
     margin: auto;
     margin-top: 40px;
@@ -9,6 +9,7 @@
     border-radius: 10px;
     @media screen and (max-width:890px) {
         width: 60%;
+        border: none;
     }
     @media screen and (max-width:450px) {
         width: 80%;

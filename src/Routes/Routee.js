@@ -1,105 +1,82 @@
-import React, { useEffect, useState } from 'react'
-import { Route, Routes } from 'react-router-dom'
-import Login from '../Pages/LoginPage/Login'
-import SignUp from '../Pages/SignUpPage/SignUp'
-import Home from "../Pages/Home/Home"
-import Forgot from "../Pages/ForgotPage/Forgot.js"
-import Header from '../components/Header/Header'
-import SideMenu from '../components/SideMenu/SideMenu'
-import ProtectedRoutes from './ProtectedRoutes'
-import Categories from '../Pages/Categories/Categories'
-import RestaurantDetail from '../Pages/RestaurantDetail/RestaurantDetail'
-import UpdateProfile from '../Pages/ProfilePage/UpdateProfile'
+import React from 'react';
+import { Navigate, Route, Routes } from 'react-router-dom';
+import Home from "../Pages/Home/Home";
+import Login from '../Pages/LoginPage/Login';
+import SignUp from '../Pages/SignUpPage/SignUp';
+import Categories from '../Pages/Categories/Categories';
+import RestaurantDetail from '../Pages/RestaurantDetail/RestaurantDetail';
+import UpdateProfile from '../Pages/ProfilePage/UpdateProfile';
+import Forgot from "../Pages/ForgotPage/Forgot.js";
+import ProtectedRoutes from './ProtectedRoutes';
+import ChangePassword from "../Pages/ChangePassword/ChangePassword.js"
+import LogoScreen from '../Pages/LogoScreen/LogoScreen';
 
+const Routee = ({ isMenuVisible, setIsMenuVisible }) => {
+  const token = localStorage.getItem("token");
 
-const Routee = ({isMenuVisible, setIsMenuVisible}) => {
-  const token = localStorage.getItem("token")
-  
   return (
     <Routes>
       <Route 
         path="/" 
-        element={
-          <>
-            <Header token={token} />
-            <Login token={token}/>
-          </>
-        }
+        element={token ? <Navigate to="/home" /> : <Login token={token} />}
       />
+      {/* <Route 
+        path="/logo" 
+        element={token ? <Navigate to="/home" /> : <LogoScreen />}
+        /> */}
+
+
       <Route 
         path="/register" 
-        element={
-          <>
-            <Header/>
-            <SignUp/>
-          </>
-        }
+        element={token ? <Navigate to="/home" /> : <SignUp />}
       />
-      
       <Route 
-        path="/home" 
+        path="/home/*"
         element={
-          <>
-           {/* <SideMenu isMenuVisible={isMenuVisible} setIsMenuVisible={setIsMenuVisible} token={token}/> */}
-            <Header isMenuVisible={isMenuVisible} setIsMenuVisible={setIsMenuVisible} token={token}/>
-            <ProtectedRoutes isMenuVisible={isMenuVisible} setIsMenuVisible={setIsMenuVisible} token={token}>
-              <Home token={token}/>
-            </ProtectedRoutes>
-          </>
+          <ProtectedRoutes>
+            <Home token={token} />
+          </ProtectedRoutes>
         }
       />
-
-
       <Route 
         path="/categories" 
         element={
-          <>
-           {/* <SideMenu isMenuVisible={isMenuVisible} setIsMenuVisible={setIsMenuVisible} /> */}
-            <Header isMenuVisible={isMenuVisible} setIsMenuVisible={setIsMenuVisible}/>
-          
-              <Categories/>
-            
-          </>
+          <ProtectedRoutes>
+            <Categories />
+          </ProtectedRoutes>
         }
       />
       <Route 
         path="/restaurantdetail" 
-        element={
-          <>
-           {/* <SideMenu isMenuVisible={isMenuVisible} setIsMenuVisible={setIsMenuVisible}/> */}
-            <Header isMenuVisible={isMenuVisible} setIsMenuVisible={setIsMenuVisible}/>
-          
-              <RestaurantDetail/>
-            
-          </>
-        }
+        element={<RestaurantDetail />}
       />
-
       <Route 
         path="/profile" 
         element={
-          <>
-           {/* <SideMenu isMenuVisible={isMenuVisible} setIsMenuVisible={setIsMenuVisible} /> */}
-            <Header isMenuVisible={isMenuVisible} setIsMenuVisible={setIsMenuVisible}/>
-              <UpdateProfile/>
-            
-          </>
+          <ProtectedRoutes>
+            <UpdateProfile />
+          </ProtectedRoutes>
         }
       />
-
-      
+      <Route 
+        path="/changepassword" 
+        element={
+          <ProtectedRoutes>
+            <ChangePassword/>
+          </ProtectedRoutes>
+        }
+      />
       <Route 
         path="/forgot" 
-        element={
-          <>
-            <Header/>
-            <Forgot/>
-          </>
-        }
+        element={token ? <Navigate to="/home" /> : <Forgot />}
       />
-     
+      <Route 
+        path="/*"
+        element={<Navigate to="/" replace />}
+      />
     </Routes>
-  )
-}
+  );
+};
 
-export default Routee
+export default Routee;
+

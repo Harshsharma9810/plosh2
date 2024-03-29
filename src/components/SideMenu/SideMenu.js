@@ -25,12 +25,16 @@ const SideMenu = ({isMenuVisible,setIsMenuVisible,token}) => {
 
       const profile = ()=>{
         navigate("/profile")
+        setIsMenuVisible(!isMenuVisible)
       }
+      const password = ()=>{
+        navigate("/changepassword")
+        setIsMenuVisible(!isMenuVisible)
+      }
+     
   return (
     <>
-    {/* {isLogin &&
-         */}
-         {token!==null && 
+      {/* {token!==null &&  */}
         <div className={`${styles.menu} ${isMenuVisible && styles.open}`} >
             <div className={styles.topbox} onClick={()=>setIsMenuVisible(!isMenuVisible)}>
 
@@ -50,6 +54,8 @@ const SideMenu = ({isMenuVisible,setIsMenuVisible,token}) => {
                         <div className={styles.email}>loremipsum@mail.com</div>
                     </div>
                 </div>
+               
+
 
                     {/* Favourites */}
                 <div className={styles.favourite}>
@@ -79,7 +85,7 @@ const SideMenu = ({isMenuVisible,setIsMenuVisible,token}) => {
                 </div>
 
                     {/* Change Password */}
-                <div className={styles.favourite}>
+                <div className={styles.favourite} onClick={password}>
                     <div className={styles.leftbox}>
                         <div className={styles.imgdiv}>
 
@@ -103,7 +109,7 @@ const SideMenu = ({isMenuVisible,setIsMenuVisible,token}) => {
                 </div>
             </div>
         </div>
-}
+    {/* } */}
     </>
   )
 }

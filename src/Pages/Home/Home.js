@@ -54,6 +54,7 @@ const Home = () => {
         try {
             const response = await API.cuisineList(token);
             console.log(response);
+        
             setShowCuisineData(response.data);
         } catch (error) {
             console.log(error);
@@ -188,7 +189,8 @@ const Home = () => {
             showRestaurantData.map((restaurant, index) => (
                 <RestaurantCard
                     key={index}
-                      images= {restaurant?.restaurantImages?.[0]?.name}
+                    images= {restaurant?.restaurantImages?.[0]?.name}
+                    images1= {restaurant?.restaurantImages?.[1]?.name}
                    resData={restaurant}
 
                 />

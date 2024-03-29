@@ -59,21 +59,21 @@ const UpdateProfile = () => {
                };
 
                useEffect(()=>{                  
-                  getUserProfile();
-               },[])
-
-               const getUserProfile=async()=>{
-                try {
-                    const response = await API.getProfile(token)
-                    if(response?.success){
-                        // toast.success(response?.message)
-                        setprofileData(response.data)
-                        reset(response.data);
-                    }
-                } catch (error) {
-                    console.log(error)
-                }
-            }
+                 getUserProfile();
+              },[])
+              
+              const getUserProfile=async()=>{
+               try {
+                   const response = await API.getProfile(token)
+                   if(response?.success){
+                      //  toast.success(response?.message)
+                       setprofileData(response.data)
+                       reset(response.data);
+                   }
+               } catch (error) {
+                   console.log(error)
+               }
+           }
             
     const inputRef = useRef(null);
 
@@ -110,7 +110,6 @@ const UpdateProfile = () => {
       <div className={styles.inputs}>         
         <div className={styles.address}>
           <label className={styles.label}>Full name</label>
-          {console.log(profileData.name,"iam from code")}
           <InputBox name="name" control={control} required type="text" defaultValue={profileData.name || ""}/>
         </div>
         <p className={styles.error}>{errors.username?.message}</p>
