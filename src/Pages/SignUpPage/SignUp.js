@@ -12,6 +12,9 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import ClipLoader from "../../components/common/Spinner"
+import { FaEyeSlash } from "react-icons/fa";
+import { FaEye } from "react-icons/fa";
+
 
 
 const SignUp = () => {
@@ -67,8 +70,8 @@ const SignUp = () => {
           if(response?.success){
             toast.success(response?.message)
 
+            navigate("/")
           }
-          // navigate("/")
           
           else{
             // console.log(response.data.message,"im respomse")
@@ -100,19 +103,19 @@ const SignUp = () => {
 
         <div className={styles.address}>
           <label className={styles.label}>Full name</label>
-          <InputBox name="name" control={control} required type="text" />
+          <InputBox name="name" control={control} required type="text" placeholder={"Enter Your Full Name"} />
         </div>
         <p className={styles.error}>{errors.username?.message}</p>
 
         <div className={styles.address}>
           <label className={styles.label}>Phone number</label>
-          <InputBox name="phone" control={control}  required type="text"/>
+          <InputBox name="phone" control={control}  required type="text" placeholder={"Enter Your Phone Number"}/>
         </div>
         <p className={styles.error}>{errors.phone?.message}</p>
 
         <div className={styles.address}>
           <label className={styles.label}>Email Address</label>
-          <InputBox name="email" control={control} required  type="text"/>
+          <InputBox name="email" control={control} required  type="text" placeholder={"Enter Your Email Address"}/>
         </div> 
         <p className={styles.error}>{errors.email?.message}</p>
        
@@ -120,8 +123,10 @@ const SignUp = () => {
           <label className={styles.label}>Password</label>
 
           <div className={styles.showhide}>
-            <InputBox name="password" control={control} required type={showPassword1 ? "text" : "password"} />
-            <img src={hide} className={styles.hideimg} alt='hide' onClick={()=>setShowPassword1(!showPassword1)}/>
+            <InputBox name="password" control={control} required type={showPassword1 ? "text" : "password"} placeholder={"Enter Your Password"}/>
+            <span className={styles.hideimg} onClick={()=>setShowPassword1(!showPassword1)}>
+              {showPassword1 ? <FaEye/> : <FaEyeSlash/>}
+            </span>
           </div> 
           <p className={styles.error}>{errors.password?.message}</p>
 
@@ -130,8 +135,11 @@ const SignUp = () => {
           <label className={styles.label}>Confirm Password</label>
 
           <div className={styles.showhide}>
-            <InputBox name="confirmPassword" control={control}  required type={showPassword2 ? "text" : "password"}/>
-            <img src={hide} className={styles.hideimg} alt='hide' onClick={()=>setShowPassword2(!showPassword2)}/>
+            <InputBox name="confirmPassword" control={control}  required type={showPassword2 ? "text" : "password"} placeholder={" Confirm Your Password"}/>
+            <span className={styles.hideimg} onClick={()=>setShowPassword2(!showPassword2)}>
+              {showPassword2 ? <FaEye/> : <FaEyeSlash/>}
+            </span>
+
           </div> 
 
           </div>
@@ -141,7 +149,7 @@ const SignUp = () => {
       <div className={styles.btndiv} >
 
         {loader===false ? <Button btntext={"Register"} handleClick={log}/> :
-        <Button btntext={<ClipLoader/>} handleClick={log}/> }
+        <Button btntext={<ClipLoader size={16} color={"white"}/>} handleClick={log}/> }
       </div>
     </form>
     

@@ -10,15 +10,20 @@ import Caribean from "../../components/Images/caribean.png"
 import korean from "../../components/Images/korean.png"
 import { API } from '../../API/APIS';
 import CategoryShimmerUI from '../../components/common/CategoryShimmerUI/CategoryShimmerUI'
+import ClipLoader from "../../components/common/Spinner"
+
 
 
 const Categories = () => {
     const [categoryData,setCategoryData] = useState([])
+    const [loader,setLoader] = useState(false)
+    
+
 
     const imagearray = [
         {imgSrc: french },
         {imgSrc: indian },
-        { imgSrc: chinese },
+        {imgSrc: chinese },
         {imgSrc: italian },
         {imgSrc: mexican },
         {imgSrc: lebanese },
@@ -31,11 +36,14 @@ const Categories = () => {
         const token = localStorage.getItem("token");
         const fetchData = async () => {
             try {
+                setLoader(true)
                 const response = await API.categoryList(token);
                 // console.log(response);
                 setCategoryData(response.data);
             } catch (error) {
                 console.log(error);
+            }finally{
+                setLoader(false)
             }
         };
         fetchData();
@@ -45,7 +53,9 @@ const Categories = () => {
   return (
     <div className={styles.categoriespage}>
         {
-        categoryData.length===0 ? <CategoryShimmerUI/> : 
+loader===true ? <div className={styles.loader} >
+         </div>
+         :
         
         <div className={styles.topdiv}>
             <h1 className={styles.heading}>Categories</h1>

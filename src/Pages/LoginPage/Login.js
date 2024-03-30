@@ -11,6 +11,8 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {toast } from "react-toastify";
 import ClipLoader from "../../components/common/Spinner"
+import { FaEyeSlash } from "react-icons/fa";
+import { FaEye } from "react-icons/fa";
 
 
 
@@ -23,21 +25,7 @@ const Login = () => {
     console.log("Button clicked")
   }
 
-const schema = yup.object().shape({
-  email: yup.string().matches(
-    /^[A-Za-z0-9_%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/,
-    "Enter a valid email address"
-  )
-  .required("Please enter your email address."),
-  password: yup.string().matches(
-    /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[-/:-@[-`{-~]).{8,}$/,
-    "Your password should contain a combination of uppercase and lowercase letters, at least one number, and at least one special character."
-  )
-  .required("Please enter your password."),
-});
-
-const { control,handleSubmit,formState: { errors }} = useForm({
-resolver: yupResolver(schema),});
+const { control,handleSubmit,formState: { errors }} = useForm();
 
   const onSubmit =(values)=>{    
     login(values)
@@ -82,7 +70,7 @@ resolver: yupResolver(schema),});
 
           <div className={styles.address}>
             <label className={styles.label}>Email Address</label>
-            <InputBox name="email"  control={control} required type="text"/>
+            <InputBox name="email"  control={control} required type="text" placeholder={"Enter Your Email Address"}/>
           </div>
           <p className={styles.error}>{errors.email?.message}</p>
 
@@ -90,9 +78,10 @@ resolver: yupResolver(schema),});
             <label className={styles.label}>Password</label>
 
             <div className={styles.showhide}>
-              <InputBox name="password" control={control} required type={showPassword ? "text" : "password"}/>
-
-              <img src={hide} className={styles.hideimg} alt='hide' onClick={()=>setShowPassword(!showPassword)}/>
+              <InputBox name="password" control={control} required type={showPassword ? "text" : "password"} placeholder={"Enter Your Password"}/>
+              <span  className={styles.hideimg} onClick={()=>setShowPassword(!showPassword)}>
+              {showPassword ? <FaEye/> : <FaEyeSlash/>}
+            </span>
             </div> 
             </div>
             <p className={styles.error}>{errors.password?.message}</p>
@@ -102,7 +91,7 @@ resolver: yupResolver(schema),});
         <div className={styles.forgot} onClick={()=>{navigate("/forgot")}}>Forgot password ?</div>
       <div className={styles.btndiv} >
       {loader===false ? <Button btntext={"Login"} handleClick={log}/> :
-          <Button btntext={<ClipLoader/>} handleClick={log}/> }
+          <Button btntext={<ClipLoader size={16} color={"black"}/>} handleClick={log}/> }
         </div>
       </form>
         <div className={styles.toggleform}>Dont have an account ? <span onClick={()=>{navigate("/register")}} className={styles.togglespan}>Register</span></div>

@@ -2,19 +2,20 @@ import React from 'react'
 import ClipLoader from "react-spinners/ClipLoader";
 
 
-const spinner = () => {
+const spinner = ({color,size}) => {
     const override  = {
         display: "block",
         margin: "0 auto",
-        borderColor: "white",
+        borderColor: "black",
+        // borderColor: `${color}`,
       };
   return (
     <>
         <ClipLoader
-          color={"white"}
+          color={color}
           // loading={loading}
           cssOverride={override}
-          size={16}
+          size={15}
           aria-label="Loading Spinner"
           data-testid="loader"
         />

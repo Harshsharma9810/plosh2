@@ -1,29 +1,18 @@
-// #app {
-//     height: 100vh;
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-//   }
-  
   .slider {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
-  
-  
   .shell {
     float: left;
     height: 15px;
     width: 90%;
     border: 1px solid #4B0082;
     border-radius: 13px;
-    // padding: 3px;
     align-items: center;
     
     .bar {
       background: #4B0082;
-    //   background: linear-gradient(to right, #9658b5, #e3505a);
       height: 100%;
       width: 15px;
       border-radius: 9px;

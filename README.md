@@ -195,3 +195,14 @@ export default UpdateProfile
 
 
 this is my update profile logic when i get the profile data i want that data to be prefilled with the exsisting details in the input box 
+
+
+1.Fixed header position ✅ 
+2.Button : hover effect ✅
+3.Placeholder in inputs ✅
+4.Password eyeimg toggle✅
+5.Cateogy shimmer remove✅ 
+6.Isactive funct header ✅
+7.On signup navigate "/"✅
+8.Login validtion remove✅
+9.Validation onchange

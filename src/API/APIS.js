@@ -136,8 +136,6 @@ async getProfile(token){
   }
   catch(error){
     return error?.response?.data;
-
-    console.log(error)
   }
 },
 

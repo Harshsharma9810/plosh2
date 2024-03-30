@@ -4,10 +4,12 @@
     // border: 1px solid black;
     align-items: center;
     margin: auto;
-    margin-top: 40px;
+    margin-top: 130px;
     font-family: 'Lorin';
     margin-bottom: 20px;
     border-radius: 10px;
+
+
     @media screen and (max-width:890px) {
         width: 60%;
         border:none
@@ -36,7 +38,7 @@
                 margin:2px 10px;
                 margin-top: 20px;
                 .showhide{
-                        width: 100%;
+                    width: 100%;
                     display: flex;
                     justify-content: space-around;
                     position: relative;
@@ -69,6 +71,10 @@
         line-height: 18.34px;
         color: #4B0082;
         cursor: pointer;
+        &:hover{
+            color: #7E45AB;
+            font-weight: 600;
+        }
     }
     .btndiv{
         margin-top: 20px;
@@ -86,6 +92,10 @@
             font-weight: 700;
             font-size: 16px;
             line-height: 16px;
+            &:hover{
+                color: #7E45AB
+              
+            }
         }
     }
 }

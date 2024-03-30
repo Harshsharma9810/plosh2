@@ -9,7 +9,6 @@ import UpdateProfile from '../Pages/ProfilePage/UpdateProfile';
 import Forgot from "../Pages/ForgotPage/Forgot.js";
 import ProtectedRoutes from './ProtectedRoutes';
 import ChangePassword from "../Pages/ChangePassword/ChangePassword.js"
-import LogoScreen from '../Pages/LogoScreen/LogoScreen';
 
 const Routee = ({ isMenuVisible, setIsMenuVisible }) => {
   const token = localStorage.getItem("token");
@@ -20,11 +19,6 @@ const Routee = ({ isMenuVisible, setIsMenuVisible }) => {
         path="/" 
         element={token ? <Navigate to="/home" /> : <Login token={token} />}
       />
-      {/* <Route 
-        path="/logo" 
-        element={token ? <Navigate to="/home" /> : <LogoScreen />}
-        /> */}
-
 
       <Route 
         path="/register" 
@@ -48,7 +42,11 @@ const Routee = ({ isMenuVisible, setIsMenuVisible }) => {
       />
       <Route 
         path="/restaurantdetail" 
-        element={<RestaurantDetail />}
+        element={
+          <ProtectedRoutes>
+            <RestaurantDetail />
+          </ProtectedRoutes>
+        }
       />
       <Route 
         path="/profile" 

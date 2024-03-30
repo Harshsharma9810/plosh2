@@ -73,7 +73,7 @@ const Forgot = () => {
     
             <div className={styles.address}>
               <label className={styles.label}>Email Address</label>
-              <InputBox name="email"  control={control} required type="text"/>
+              <InputBox name="email"  control={control} required type="text" placeholder={"Enter Your Email Address"}/>
             </div>
             <p className={styles.error}>{errors.email?.message}</p>    
           </div>
@@ -81,7 +81,7 @@ const Forgot = () => {
          
          <div className={styles.btndiv} >
          {loader===false ? <Button btntext={"Continue"} handleClick={log}/> :
-            <Button btntext={<ClipLoader/>} handleClick={log}/> }
+            <Button btntext={<ClipLoader size={16} color={"white"}/>} handleClick={log}/> }
           </div>
         </form>
         </div>

@@ -1,5 +1,6 @@
 .button{
     // height: 45px;
+    border:none;
     width: 219px;
     background-color: #4B0082;
     border-radius: 10px;
@@ -20,10 +21,15 @@
         padding:5px ;
         font-size: 16px;
     }
+    &:hover{
+        background-color: white;
+        color: #4B0082;
+        border: 1px solid #4B0082;
+        transition: all 0.2s ease;        
+    }
 }
 
 .button1{
-    // background-color: red;
     width: 21%;
     background-color: #4B0082;
     border-radius: 10px;
@@ -40,12 +46,13 @@
     @media screen and (max-width:650px) {
         width: 130px;
         font-size: 18px;
-
     }
     @media screen and (max-width:380px) {
         width: 70px;
         padding:13px 5px;
-        // font-size: 16px;
+    }
+    &:hover{
+        border-left: 2px solid #4B0082;
     }
 }
 
@@ -60,7 +67,6 @@
     width: 40%;
     box-shadow: 2px 8px 5px 0px rgba(0, 0, 0, 0.25);
     border: none;
-
 }
 .button4{
     @media screen and (max-width:652px) {

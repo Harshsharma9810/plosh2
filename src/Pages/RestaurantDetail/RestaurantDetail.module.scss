@@ -1,5 +1,47 @@
 .detail{
-    height: 400px;
+    // height: 400px;
     width: 100%;
     background-color: pink;
+    // margin-top: 5px;
+    .photobox{
+        width: 100%;
+        .imgdiv{
+            width: 100%;
+            .image{
+                width: 100%;
+                height: 500px;
+                min-height: 400px;
+                position: relative;
+                object-fit: cover;
+            }
+        }
+        .textdiv{
+            position: absolute;
+            top: 50%;
+            background-color: red;
+            width: 90%;
+            margin: 0 25px;
+            .upperbox{
+                .heading{
+
+                }
+                .address{
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-start;
+                    .locationimg{
+                        height: 20px;
+                        margin: 0 20px;
+                    }
+                    .location{
+
+                    }
+                }
+            }
+            .lowerbox{
+
+            }
+        }
+    }
+
 }

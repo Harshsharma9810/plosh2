@@ -11,7 +11,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import ClipLoader from "../../components/common/Spinner"
-import CategoryShimmerUI from "../../components/common/CategoryShimmerUI/CategoryShimmerUI"
 import UpdateShimmerUI from '../../components/common/UpdateShimmerUI/UpdateShimmerUI';
 
 const UpdateProfile = () => {
@@ -129,7 +128,7 @@ const UpdateProfile = () => {
 
       <div className={styles.btndiv} >
         {loader===false ? <Button btntext={"Update"} handleClick={log}/> :
-        <Button btntext={<ClipLoader/>} handleClick={log}/> }
+        <Button btntext={<ClipLoader size={16} color={"white"}/>} handleClick={log}/> }
       </div>
     </form>}
  

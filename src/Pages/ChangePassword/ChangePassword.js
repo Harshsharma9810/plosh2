@@ -5,13 +5,15 @@ import InputBox from '../../components/InputBox/InputBox';
 import Button from '../../components/Button/Button';
 import hide from "../../components/Images/hide.png"
 import plosh from "../../components/Images/plosh.png"
-import { Navigate, useNavigate } from 'react-router-dom';
+import {useNavigate } from 'react-router-dom';
 import { API } from '../../API/APIS';
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import ClipLoader from "../../components/common/Spinner"
+import { FaEyeSlash } from "react-icons/fa";
+import { FaEye } from "react-icons/fa";
 
 
 const ChangePassword = () => {
@@ -76,7 +78,10 @@ const ChangePassword = () => {
           <label className={styles.label}>Old Password</label>
           <div className={styles.showhide}>
             <InputBox name="oldPassword" control={control} required type={showOldPassword ? "text" : "password"} />
-            <img src={hide} className={styles.hideimg} alt='hide' onClick={()=>setShowOldPassword(!showOldPassword)}/>
+            <span className={styles.hideimg} onClick={()=>setShowOldPassword(!showOldPassword)}>
+              {showOldPassword ? <FaEye/> : <FaEyeSlash/>}
+            </span>
+
           </div> 
           <p className={styles.error}>{errors.oldPassword?.message}</p>
           </div>
@@ -86,7 +91,9 @@ const ChangePassword = () => {
 
           <div className={styles.showhide}>
             <InputBox name="newPassword" control={control} required type={showPassword1 ? "text" : "password"} />
-            <img src={hide} className={styles.hideimg} alt='hide' onClick={()=>setShowPassword1(!showPassword1)}/>
+            <span className={styles.hideimg} onClick={()=>setShowPassword1(!showPassword1)}>
+              {showPassword1 ? <FaEye/> : <FaEyeSlash/>}
+            </span>
           </div> 
           <p className={styles.error}>{errors.newPassword?.message}</p>
           </div>
@@ -96,7 +103,9 @@ const ChangePassword = () => {
 
           <div className={styles.showhide}>
             <InputBox name="confirmPassword" control={control}  required type={showPassword2 ? "text" : "password"}/>
-            <img src={hide} className={styles.hideimg} alt='hide' onClick={()=>setShowPassword2(!showPassword2)}/>
+            <span className={styles.hideimg} onClick={()=>setShowPassword2(!showPassword2)}>
+              {showPassword2 ? <FaEye/> : <FaEyeSlash/>}
+            </span>
           </div> 
 
           <p className={styles.error}>{errors.confirmPassword?.message}</p>
@@ -105,7 +114,7 @@ const ChangePassword = () => {
 
       <div className={styles.btndiv} >
         {loader===false ? <Button btntext={"Change Password"} styleType={"button4"} handleClick={log}/> :
-        <Button btntext={<ClipLoader/>} handleClick={log}/> }
+        <Button btntext={<ClipLoader size={16} color={"white"}/>} handleClick={log}/> }
       </div>
     </form>
     

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, {useState } from 'react'
 import styles from "./Home.module.scss"
 import Button from "../../components/Button/Button"
 import filter from "../../components/Images/filter.png"

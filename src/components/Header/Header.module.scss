@@ -7,7 +7,8 @@
     justify-content: space-between;
     align-items: center;
     z-index: 1000;
-    position: sticky;
+    position: fixed;
+
     top: 0;
 
     .logodiv{
@@ -31,7 +32,7 @@
     justify-content: space-between;
     align-items: center;
     z-index:2;
-    position: sticky;
+    position: fixed;
     top: 0;
     box-shadow: 0 3px 5px gray;
     @media screen and (max-width:390px) {
@@ -80,6 +81,9 @@
             cursor: pointer;
             font-weight: 400;
             // line-height: 15.72px;
+            // padding: 0 10px;
+            overflow: hidden;
+            text-decoration: none;
 
             .homeimg{
                 color: white;
@@ -100,7 +104,12 @@
                     display: none;
                 }
             }
+            &:hover{
+                color: blue;
+                transition: all 0.3s ease;        
+             }
         }
+        
         .menudiv{
             // background-color: pink;
             display: flex;
@@ -117,6 +126,10 @@
                 @media screen and (max-width:488px) {
                     display: none;
                 }
+                &:hover{
+                    color: blue;
+                    transition: all 0.3s ease;        
+                 }
             }
 
             .homeimg{
@@ -125,6 +138,7 @@
                 width: 20px;
                 margin-bottom: 5px;
             }
+          
         }
     }
     

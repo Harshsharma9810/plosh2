@@ -9,11 +9,11 @@ import { useNavigate } from 'react-router-dom'
 const RestaurantCard = ({resData,images,images1}) => {
     // const {resData} = props;
     // console.log(resData)
-    console.log(resData?.restaurantImages?.[0],"IM 0");
-    console.log(resData?.restaurantImages?.[1],"IM 1");
-    let imageUrl = `${process.env.REACT_APP_API_URL}${images}`;
+    // console.log(resData?.restaurantImages?.[0],"IM 0");
+    // console.log(resData?.restaurantImages?.[1],"IM 1");
+    // let imageUrl = `${process.env.REACT_APP_API_URL}${images}`;
 
-    const imageUrl1 = `${process.env.REACT_APP_API_URL}${images1}`
+    // const imageUrl1 = `${process.env.REACT_APP_API_URL}${images1}`
     
     
     // console.log(imageUrl)
@@ -23,7 +23,9 @@ const RestaurantCard = ({resData,images,images1}) => {
     const ratingPercentage = (resData.rating / 10) * 100;
     const navigate = useNavigate()
     const navigatefunc=()=>{
-        navigate("/restaurantdetail")
+        // navigate("/restaurantdetail")
+        navigate("/restaurantdetail", { state: { restaurant: resData } });
+
     }
 
   return (
