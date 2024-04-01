@@ -36,13 +36,13 @@ const SideMenu = ({isMenuVisible,setIsMenuVisible,token}) => {
     <>
       {/* {token!==null &&  */}
         <div className={`${styles.menu} ${isMenuVisible && styles.open}`} >
-            <div className={styles.topbox} onClick={()=>setIsMenuVisible(!isMenuVisible)}>
+            <div className={styles.topbox}>
 
-                <div className={styles.logobox}>
+                <div className={styles.logobox} >
                     <img src={plosh} alt='logo' className={styles.logo}/>
                 </div>
             
-                <div className={styles.close} >
+                <div className={styles.close} onClick={()=>setIsMenuVisible(!isMenuVisible)}>
                     <img src={close} className={styles.close} alt='close'/>
                 </div>
             </div>

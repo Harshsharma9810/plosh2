@@ -29,7 +29,7 @@ const UpdateProfile = () => {
         .required(`Please enter your email address.`),
       });
   
-      const { control,handleSubmit,formState: { errors },reset} = useForm({
+      const { control,handleSubmit,formState: { errors },reset,trigger} = useForm({
         resolver: yupResolver(schema),});
   
         const log = ()=>{
@@ -86,6 +86,10 @@ const UpdateProfile = () => {
     };
 
     const imageUrl = `${process.env.REACT_APP_API_URL}${profileData.avatar}`;
+    const handleInputChange = async (e) => {
+      await trigger(e.target.name);
+    };
+  
 
   return (
     <>
@@ -109,13 +113,15 @@ const UpdateProfile = () => {
       <div className={styles.inputs}>         
         <div className={styles.address}>
           <label className={styles.label}>Full name</label>
-          <InputBox name="name" control={control} required type="text" defaultValue={profileData.name || ""}/>
+          <InputBox name="name" control={control} required type="text" onChange={handleInputChange} 
+            defaultValue={profileData.name || ""}/>
         </div>
         <p className={styles.error}>{errors.username?.message}</p>
 
         <div className={styles.address}>
           <label className={styles.label}>Phone number</label>
-          <InputBox name="phone" control={control}  required type="text" defaultValue={profileData.phone || ""} />
+          <InputBox name="phone" control={control}  required type="text" 
+          onChange={handleInputChange} defaultValue={profileData.phone || ""} />
         </div>
         <p className={styles.error}>{errors.phone?.message}</p>
 
@@ -128,7 +134,7 @@ const UpdateProfile = () => {
 
       <div className={styles.btndiv} >
         {loader===false ? <Button btntext={"Update"} handleClick={log}/> :
-        <Button btntext={<ClipLoader size={16} color={"white"}/>} handleClick={log}/> }
+        <Button btntext={<ClipLoader size={15} color={"white"}/>} handleClick={log}/> }
       </div>
     </form>}
  

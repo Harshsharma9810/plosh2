@@ -34,7 +34,7 @@
     z-index:2;
     position: fixed;
     top: 0;
-    box-shadow: 0 3px 5px gray;
+    // box-shadow: 0 3px 5px gray;
     @media screen and (max-width:390px) {
         justify-content: flex-start;
     }
@@ -63,7 +63,6 @@
         @media screen and (max-width:700px) {
             // justify-content: flex-end;
             margin-right: 25px;
-
         }
         @media screen and (max-width:700px) {
             // justify-content: flex-end;
@@ -82,14 +81,17 @@
             font-weight: 400;
             // line-height: 15.72px;
             // padding: 0 10px;
-            overflow: hidden;
+            // overflow: hidden;
             text-decoration: none;
-
+            // background-color: pink;
+            width: 10%;
+            
             .homeimg{
                 color: white;
                 height: 20px;
                 width: 20px;
                 margin-bottom: 5px;
+
                 @media screen and (max-width:588px) {
                     // height: 13px;
                     // width: 13px;
@@ -104,11 +106,15 @@
                     display: none;
                 }
             }
+            .homeheading1{
+                font-weight: 700;
+            }
             &:hover{
-                color: blue;
-                transition: all 0.3s ease;        
+                // color: blue;
+                font-weight: 700;    
              }
         }
+        
         
         .menudiv{
             // background-color: pink;
@@ -118,6 +124,9 @@
             color: white;
             cursor: pointer;
             font-weight: 400;
+            width: 10%;
+
+            
             // line-height: 15.72px;
             .homeheading{
                 @media screen and (max-width:700px) {
@@ -127,8 +136,10 @@
                     display: none;
                 }
                 &:hover{
-                    color: blue;
-                    transition: all 0.3s ease;        
+                    // color: blue;
+                    // transition: all 0.3s ease; 
+                    font-weight: 700;    
+       
                  }
             }
 

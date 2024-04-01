@@ -15,7 +15,7 @@ const spinner = ({color,size}) => {
           color={color}
           // loading={loading}
           cssOverride={override}
-          size={15}
+          size={size}
           aria-label="Loading Spinner"
           data-testid="loader"
         />

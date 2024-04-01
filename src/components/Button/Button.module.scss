@@ -1,6 +1,6 @@
 .button{
     // height: 45px;
-    border:none;
+    border:1px solid #4B0082;
     width: 219px;
     background-color: #4B0082;
     border-radius: 10px;
@@ -25,7 +25,6 @@
         background-color: white;
         color: #4B0082;
         border: 1px solid #4B0082;
-        transition: all 0.2s ease;        
     }
 }
 

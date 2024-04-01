@@ -87,11 +87,12 @@ const { control,handleSubmit,formState: { errors }} = useForm();
             <p className={styles.error}>{errors.password?.message}</p>
 
         </div>
-
-        <div className={styles.forgot} onClick={()=>{navigate("/forgot")}}>Forgot password ?</div>
+        <div className={styles.forgotdiv}>
+        <span className={styles.forgot} onClick={()=>{navigate("/forgot")}}>Forgot password ?</span>
+        </div>
       <div className={styles.btndiv} >
       {loader===false ? <Button btntext={"Login"} handleClick={log}/> :
-          <Button btntext={<ClipLoader size={16} color={"black"}/>} handleClick={log}/> }
+          <Button btntext={<ClipLoader size={15} color={"black"}/>} handleClick={log}/> }
         </div>
       </form>
         <div className={styles.toggleform}>Dont have an account ? <span onClick={()=>{navigate("/register")}} className={styles.togglespan}>Register</span></div>

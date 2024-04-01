@@ -54,6 +54,7 @@ const Categories = () => {
     <div className={styles.categoriespage}>
         {
 loader===true ? <div className={styles.loader} >
+            <ClipLoader size={30}/>
          </div>
          :
         

@@ -29,9 +29,9 @@ const Header = ({isMenuVisible, setIsMenuVisible}) => {
       (location.pathname==="/" ? navigate("/register") : navigate("/"))
     }
 
-    const handleNavigate = (link) => {
-        navigate(link);
-    };
+    // const handleNavigate = (link) => {
+    //     navigate(link);
+    // };
 
     const openMenu=(e)=>{
       setIsMenuVisible(!isMenuVisible)
@@ -60,20 +60,14 @@ const Header = ({isMenuVisible, setIsMenuVisible}) => {
 
           <div className={styles.right}>
               {menuItems.map((item, index) => (
-                  // <NavLink to={item.link} style={({ isActive }) => {
-                  //   return isActive ? { color: "green" } : {};
-                  //   }} key={index} className={styles.homediv} >
-                  //     <img src={item.icon} alt={item.text} className={styles.homeimg} />
-                  //     <span className={styles.homeheading}>{item.text}</span>
-                  // </NavLink>
-                    <NavLink to={item.link} key={index} className={styles.homediv} activeClassName={styles.active}
+                    <NavLink to={item.link} key={index} className={styles.homediv} activeClassName={styles.activehome}
                     >
                       <img
                       src={item.link === window.location.pathname ? item.icon2 : item.icon1}
                         alt={item.text}
                         className={styles.homeimg}
                       />
-                      <span className={styles.homeheading}>{item.text}</span>
+                      <span className={item.link === window.location.pathname ? styles.homeheading1 : styles.homeheading}>{item.text}</span>
                     </NavLink>
 
               ))}

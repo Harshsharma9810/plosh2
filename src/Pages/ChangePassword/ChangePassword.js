@@ -28,13 +28,18 @@ const ChangePassword = () => {
         /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[-:-@[-`{-~]).{8,}$/,
         "Your password should contain a combination of uppercase and lowercase letters, at least one number, and at least one special character."
       )
-      .required("Please enter your password."),
+      .required("Please enter your new password."),
+      oldPassword: yup.string().matches(
+        /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[-:-@[-`{-~]).{8,}$/,
+        "Your password should contain a combination of uppercase and lowercase letters, at least one number, and at least one special character."
+      )
+      .required("Please enter your old password."),
       confirmPassword: yup.string()
       .oneOf([yup.ref('newPassword'), null], 'Passwords must match')
       .required('Please confirm your password')
     });
 
-    const { control,handleSubmit,formState: { errors }} = useForm({
+    const { control,handleSubmit,formState: { errors },trigger} = useForm({
       resolver: yupResolver(schema),});
 
       const log = ()=>{
@@ -64,6 +69,10 @@ const ChangePassword = () => {
 
       }
      }
+     const handleInputChange = async (e) => {
+      await trigger(e.target.name);
+    };
+  
 
   return (
 
@@ -77,7 +86,7 @@ const ChangePassword = () => {
         <div className={styles.address}>
           <label className={styles.label}>Old Password</label>
           <div className={styles.showhide}>
-            <InputBox name="oldPassword" control={control} required type={showOldPassword ? "text" : "password"} />
+            <InputBox name="oldPassword" control={control} required type={showOldPassword ? "text" : "password"}  onChange={handleInputChange}/>
             <span className={styles.hideimg} onClick={()=>setShowOldPassword(!showOldPassword)}>
               {showOldPassword ? <FaEye/> : <FaEyeSlash/>}
             </span>
@@ -90,7 +99,7 @@ const ChangePassword = () => {
           <label className={styles.label}>New Password</label>
 
           <div className={styles.showhide}>
-            <InputBox name="newPassword" control={control} required type={showPassword1 ? "text" : "password"} />
+            <InputBox name="newPassword" control={control} required type={showPassword1 ? "text" : "password"}  onChange={handleInputChange}/>
             <span className={styles.hideimg} onClick={()=>setShowPassword1(!showPassword1)}>
               {showPassword1 ? <FaEye/> : <FaEyeSlash/>}
             </span>
@@ -102,7 +111,7 @@ const ChangePassword = () => {
           <label className={styles.label}>Confirm New Password</label>
 
           <div className={styles.showhide}>
-            <InputBox name="confirmPassword" control={control}  required type={showPassword2 ? "text" : "password"}/>
+            <InputBox name="confirmPassword" control={control}  required type={showPassword2 ? "text" : "password"} onChange={handleInputChange}/>
             <span className={styles.hideimg} onClick={()=>setShowPassword2(!showPassword2)}>
               {showPassword2 ? <FaEye/> : <FaEyeSlash/>}
             </span>

@@ -39,11 +39,15 @@
                     display: flex;
                     justify-content: space-around;
                     position: relative;
+                    align-items: center;
+
                     .hideimg{
                         // margin-right: 20px;
                         position: absolute;
                         right: 10px;
                         cursor: pointer;
+                        padding-bottom: 15px;
+
                     }
                 }
 
@@ -85,7 +89,9 @@
             font-size: 16px;
             line-height: 16px;
             &:hover{
-                color: #7E45AB
+                // color: #7E45AB;
+                color: #790acc;
+
             }
         }
     }

@@ -8,6 +8,8 @@ import SimpleMap from '../../components/common/SimpleMap'
 import { API } from '../../API/APIS';
 import RestaurantCard from '../../components/RestaurantCard/RestaurantCard'
 import Slider from '../../components/common/Slider/Slider'
+import ClipLoader from "../../components/common/Spinner"
+
 
 
 
@@ -64,6 +66,7 @@ const Home = () => {
   }
   // const token = localStorage.getItem("token");
   // console.log(token,"from home")
+  
 
 
 
@@ -96,9 +99,9 @@ const Home = () => {
           <div className={styles.inputbox}>
             <div className={styles.inputicon}>
                 <img src={search} alt="search" className={styles.searchicon}/>
-                <input className={styles.input} type="text" placeholder="Nearby Restaurants"/>
+                <input className={styles.input} type="text" placeholder="Nearby Restaurants" />
             </div>
-            <Button styleType={"button1"} btntext={"Search"}/>
+            <Button styleType={"button1"} btntext={"Search"} />
           </div>
 
           <div className={styles.filter} onClick={filterMenuFunc}>
@@ -125,18 +128,12 @@ const Home = () => {
                     <h2 className={styles.sort}>Sort by rating</h2>
                     <div className={styles.info}>
                         <div className={styles.auth}>
-                            <div className={styles.head}>Authenticity <Slider/></div>
-                            {/* <div className={styles.barnum}>
-
-                                <div className={styles.bar}>
-                                <div className={styles.barspan} style={{ width: `80%` }}></div>
-                              
-                                </div>
-                                <div className={styles.num}>08</div>
-                            </div> */}
-                            
+                            <div className={styles.head}>Authenticity <Slider/></div> 
                         </div>
                         <div className={styles.auth}>
+                            <div className={styles.head}>Taste <Slider/></div> 
+                        </div>
+                        {/* <div className={styles.auth}>
                             <div className={styles.head}>Taste</div>
                             <div className={styles.barnum}>
                                 <div className={styles.bar}>
@@ -144,7 +141,7 @@ const Home = () => {
                                 </div>
                                 <div className={styles.num}>9</div>
                             </div>
-                        </div>
+                        </div> */}
                 
             </div>
                   </div>
@@ -156,7 +153,7 @@ const Home = () => {
                       {showCuisineData.map((cuisine, index) => (
                         <div key={index} className={styles.inputs}>
                           <input value="test" type="checkbox" id={`cuisine${index}`} className={styles.squarebox}/>
-                          <label htmlFor={`cuisine${index}`} className={styles.cuisine}>{cuisine.name}</label>
+                          <label htmlFor={`cuisine${index}`} className={styles.cuisine}>{cuisine.name.split(" ")[0]}</label>
                           {/* {console.log(cuisine._id)} */}
                         </div>
                       ))}
@@ -184,7 +181,7 @@ const Home = () => {
 {listactive1 &&
     <div>
         {showRestaurantData.length === 0 ? (
-            <div>Getting restaurants List...</div>
+            <div> <ClipLoader size={30}/></div>
         ) : (
             showRestaurantData.map((restaurant, index) => (
                 <RestaurantCard
@@ -194,10 +191,6 @@ const Home = () => {
                    resData={restaurant}
 
                 />
-            //     <RestaurantCard
-            //     key={index}
-            //     resData={restaurant}
-            // />
             ))
         )}
     </div>

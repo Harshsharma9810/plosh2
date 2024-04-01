@@ -42,11 +42,13 @@
                     display: flex;
                     justify-content: space-around;
                     position: relative;
+                    align-items: center;
                     .hideimg{
                         // margin-right: 20px;
                         position: absolute;
                         right: 10px;
                         cursor: pointer;
+                        padding-bottom: 15px;
                     }
                 }
 
@@ -60,20 +62,24 @@
             }
         }
     }
-    .forgot{
+    .forgotdiv{
+
         display: flex;
         align-items: center;
         justify-content: flex-end;
         margin-right: 15px;
         margin-top: 10px;
-        font-weight: 400;
-        font-size: 16px;
-        line-height: 18.34px;
-        color: #4B0082;
-        cursor: pointer;
-        &:hover{
-            color: #7E45AB;
-            font-weight: 600;
+        .forgot{
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 18.34px;
+            color: #4B0082;
+            cursor: pointer;
+            &:hover{
+                // color: #7E45AB;
+                font-weight: 700;
+                transition: all 0.3s ease; 
+            }
         }
     }
     .btndiv{
@@ -89,12 +95,13 @@
 
         .togglespan{
             color: #4B0082;
-            font-weight: 700;
+            font-weight: 600;
             font-size: 16px;
             line-height: 16px;
             &:hover{
-                color: #7E45AB
-              
+                font-weight: 700;
+                color: #790acc;
+
             }
         }
     }
