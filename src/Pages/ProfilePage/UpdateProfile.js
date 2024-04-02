@@ -14,131 +14,133 @@ import ClipLoader from "../../components/common/Spinner"
 import UpdateShimmerUI from '../../components/common/UpdateShimmerUI/UpdateShimmerUI';
 
 const UpdateProfile = () => {
-    const [loader,setLoader] = useState(false)
-    const [selectedFile, setSelectedFile] = useState(null);
-    const [profileData, setprofileData] = useState([]);
+  const [loader, setLoader] = useState(false)
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [profileData, setprofileData] = useState([]);
 
-    const schema = yup.object().shape({
-        name:yup.string().required("Please enter your name"),
-        phone: yup.string()
-        .matches(/^\d{10}$/, 'Phone number must be exactly 10 digits')
-        .required('Please enter your contact number.'),
-  
-        email: yup.string()
-        .email("Please enter a valid email address")
-        .required(`Please enter your email address.`),
-      });
-  
-      const { control,handleSubmit,formState: { errors },reset,trigger} = useForm({
-        resolver: yupResolver(schema),});
-  
-        const log = ()=>{
-        //  console.log("Form Submitted")
-        }
-        const token = localStorage.getItem("token")
+  const schema = yup.object().shape({
+    name: yup.string().required("Please enter your name"),
+    phone: yup.string()
+      .matches(/^\d{10}$/, 'Phone number must be exactly 10 digits')
+      .required('Please enter your contact number.'),
 
-        const onSubmit= async(data)=>{
-            data.file=selectedFile
-                 try {
-                  setLoader(true)
-                   const response = await API.updateProfile(data, token);
-                   console.log(response);
-                   if (response?.success) {
-                     toast.success(response?.message);
-                   } else {
-                     console.log({ response });
-                     toast.error(response?.message);
-                   }
-                 } catch (error) {
-                   console.log(error);
-                 }
-                 finally{
-                  setLoader(false)
-                 }
-               };
+    email: yup.string()
+      .email("Please enter a valid email address")
+      .required(`Please enter your email address.`),
+  });
 
-               useEffect(()=>{                  
-                 getUserProfile();
-              },[])
-              
-              const getUserProfile=async()=>{
-               try {
-                   const response = await API.getProfile(token)
-                   if(response?.success){
-                      //  toast.success(response?.message)
-                       setprofileData(response.data)
-                       reset(response.data);
-                   }
-               } catch (error) {
-                   console.log(error)
-               }
-           }
-            
-    const inputRef = useRef(null);
+  const { control, handleSubmit, formState: { errors }, reset, trigger } = useForm({
+    resolver: yupResolver(schema),
+  });
 
-    const handleAddClick = () => {
-        inputRef.current.click();
-    };
+  const log = () => {
+    //  console.log("Form Submitted")
+  }
+  const token = localStorage.getItem("token")
 
-    const handleFileUpload = (event) => {
-        const file = event.target.files[0];
-        setSelectedFile(file);
-    };
+  const onSubmit = async (data) => {
+    data.file = selectedFile
+    try {
+      setLoader(true)
+      const response = await API.updateProfile(data, token);
+      console.log(response);
+      if (response?.success) {
+        toast.success(response?.message);
+      } else {
+        console.log({ response });
+        toast.error(response?.message);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+    finally {
+      setLoader(false)
+    }
+  };
 
-    const imageUrl = `${process.env.REACT_APP_API_URL}${profileData.avatar}`;
-    const handleInputChange = async (e) => {
-      await trigger(e.target.name);
-    };
-  
+  useEffect(() => {
+    getUserProfile();
+  }, [])
+
+  const getUserProfile = async () => {
+    try {
+      const response = await API.getProfile(token)
+      if (response?.success) {
+        //  toast.success(response?.message)
+        setprofileData(response.data)
+        reset(response.data);
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const inputRef = useRef(null);
+
+  const handleAddClick = () => {
+    inputRef.current.click();
+  };
+
+  const handleFileUpload = (event) => {
+    const file = event.target.files[0];
+    setSelectedFile(file);
+  };
+
+  const imageUrl = `${process.env.REACT_APP_API_URL}${profileData.avatar}`;
+  const handleInputChange = async (e) => {
+    await trigger(e.target.name);
+  };
+
 
   return (
     <>
-  
-      {profileData.length===0? <UpdateShimmerUI/> : 
-    <div className={styles.loginbox}>
-      <h1 className={styles.heading}>{"Update Profile"}</h1>
-      <div className={styles.bigimgbox}>
-        <div className={styles.imgbox}>
-            <img src={selectedFile ? URL.createObjectURL(selectedFile) : profileData.avatar===null ? userupdate : imageUrl} alt="User" className={styles.img} />
-            {/* <img src={selectedFile ? URL.createObjectURL(selectedFile) : userupdate} alt="User" className={styles.img} /> */}
-            <div className={styles.addFile} >
-              <img src={plusicon} alt="Add File" className={styles.plus} onClick={handleAddClick} style={{cursor:"pointer", zIndex: "-2"}} />
-              <input name="avatar" ref={inputRef} control={control} type="file" 
-                style={{display:"none"}} onChange={handleFileUpload} />
-            </div> 
-        </div>
-       </div>  
-       {profileData &&
-    <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-      <div className={styles.inputs}>         
-        <div className={styles.address}>
-          <label className={styles.label}>Full name</label>
-          <InputBox name="name" control={control} required type="text" onChange={handleInputChange} 
-            defaultValue={profileData.name || ""}/>
-        </div>
-        <p className={styles.error}>{errors.username?.message}</p>
 
-        <div className={styles.address}>
-          <label className={styles.label}>Phone number</label>
-          <InputBox name="phone" control={control}  required type="text" 
-          onChange={handleInputChange} defaultValue={profileData.phone || ""} />
-        </div>
-        <p className={styles.error}>{errors.phone?.message}</p>
+      {profileData.length === 0 ? <UpdateShimmerUI /> :
+        <div className={styles.loginbox}>
+          <h1 className={styles.heading}>{"Update Profile"}</h1>
+          <div className={styles.bigimgbox}>
+            <div className={styles.imgbox}>
+              <div className={styles.imgbox_wrap}>
+                <img src={selectedFile ? URL.createObjectURL(selectedFile) : profileData.avatar === null ? userupdate : imageUrl} alt="User" className={styles.img} />
+              </div>
+              <div className={styles.addFile} >
+                <img src={plusicon} alt="Add File" className={styles.plus} onClick={handleAddClick} style={{ cursor: "pointer", zIndex: "-2" }} />
+                <input name="avatar" ref={inputRef} control={control} type="file"
+                  style={{ display: "none" }} onChange={handleFileUpload} />
+              </div>
+            </div>
+          </div>
+          {profileData &&
+            <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+              <div className={styles.inputs}>
+                <div className={styles.address}>
+                  <label className={styles.label}>Full name</label>
+                  <InputBox name="name" control={control} required type="text" onChange={handleInputChange}
+                    defaultValue={profileData.name || ""} />
+                </div>
+                <p className={styles.error}>{errors.username?.message}</p>
 
-        <div className={styles.address}>
-          <label className={styles.label}>Email Address</label>
-          <InputBox name="email" control={control} required  type="text" defaultValue={profileData.email || ""} readOnly={true}/>
-        </div> 
-        <p className={styles.error}>{errors.email?.message}</p>
-      </div>
+                <div className={styles.address}>
+                  <label className={styles.label}>Phone number</label>
+                  <InputBox name="phone" control={control} required type="text"
+                    onChange={handleInputChange} defaultValue={profileData.phone || ""} />
+                </div>
+                <p className={styles.error}>{errors.phone?.message}</p>
 
-      <div className={styles.btndiv} >
-        {loader===false ? <Button btntext={"Update"} handleClick={log}/> :
-        <Button btntext={<ClipLoader size={15} color={"white"}/>} handleClick={log}/> }
-      </div>
-    </form>}
- 
-    </div>}
+                <div className={styles.address}>
+                  <label className={styles.label}>Email Address</label>
+                  <InputBox name="email" control={control} required type="text" defaultValue={profileData.email || ""} readOnly={true} />
+                </div>
+                <p className={styles.error}>{errors.email?.message}</p>
+              </div>
+
+              <div className={styles.btndiv} >
+                {loader === false ? <Button btntext={"Update"} handleClick={log} /> :
+                  <Button btntext={<ClipLoader size={15} color={"white"} />} handleClick={log} />}
+              </div>
+            </form>}
+
+        </div>}
     </>
   )
 }

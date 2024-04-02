@@ -23,9 +23,7 @@ const RestaurantCard = ({resData,images,images1}) => {
     const ratingPercentage = (resData.rating / 10) * 100;
     const navigate = useNavigate()
     const navigatefunc=()=>{
-        // navigate("/restaurantdetail")
-        navigate("/restaurantdetail", { state: { restaurant: resData } });
-
+        navigate("/restaurantdetail", { state: { restaurant: resData} });
     }
 
   return (

@@ -189,7 +189,6 @@ const Home = () => {
                     images= {restaurant?.restaurantImages?.[0]?.name}
                     images1= {restaurant?.restaurantImages?.[1]?.name}
                    resData={restaurant}
-
                 />
             ))
         )}

@@ -1,208 +1,129 @@
-For trimming italian cusine
-.split(" ")[0]
+Profile with plus icon on left working fine
+.loginbox{
+    // height: max-content;
+    width: 38%;
+    // border: 1px solid black;
+    align-items: center;
+    margin: auto;
+    margin-top: 40px;
+    font-family: 'Lorin';
+    border-radius: 10px;
+    margin-top: 130px;
 
-
-import React, { useState, useRef } from 'react';
-import styles from './YourComponent.module.css'; // Assuming you're using CSS modules
-// Import your images here
-
-const YourComponent = () => {
-    const [showInput, setShowInput] = useState(false);
-    const inputRef = useRef(null);
-
-    const handleAddClick = () => {
-        setShowInput(true);
-        inputRef.current.click(); // Programmatically click the input element
-    };
-
-    return (
-        <div>
-            <div className={styles.container}>
-                <div className={styles.addFile} onClick={handleAddClick}>
-                    <img src={plusicon} alt="Add File" className={styles.plus} />
-                </div>            
-            </div>
-            <div className={styles.input}>
-                {showInput && (
-                    <div className={styles.in1}>
-                        {/* Render the input element */}
-                        <input ref={inputRef} id="files" style={{ visibility: "hidden" }} type="file" />
-                    </div>
-                )}
-            </div>
-        </div>
-    );
-};
-
-export default YourComponent;
-
-
-
-position: "absolute", left: "-9999px" ,
-
-
-
-
-
-import React, { useEffect, useRef, useState } from 'react'
-import styles from "./UpdateProfile.module.scss"
-import { useForm } from 'react-hook-form';
-import InputBox from '../../components/InputBox/InputBox';
-import Button from '../../components/Button/Button';
-import userupdate from "../../components/Images/userupdate.png"
-import plusicon from "../../components/Images/plusicon.png"
-import { API } from '../../API/APIS';
-import * as yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
-import ClipLoader from "../../components/common/Spinner"
-
-const UpdateProfile = () => {
-    const [loader,setLoader] = useState(false)
-    const [showInput, setShowInput] = useState(false);
-    const [selectedFile, setSelectedFile] = useState(null);
-    const [profileData, setprofileData] = useState([]);
-
-
-    const schema = yup.object().shape({
-        name:yup.string().required("Please enter your name"),
-        phone: yup.string()
-        .matches(/^\d{10}$/, 'Phone number must be exactly 10 digits')
-        .required('Please enter your contact number.'),
-  
-        email: yup.string()
-        .email("Please enter a valid email address")
-        .required(`Please enter your email address.`),
-      });
-  
-      const { control,handleSubmit,formState: { errors }} = useForm({
-        resolver: yupResolver(schema),});
-  
-        const log = ()=>{
-        //  console.log("Form Submitted")
+    @media screen and (max-width:890px) {
+        width: 60%;
+        border: none;
+    }
+    @media screen and (max-width:450px) {
+        width: 80%;
+    }
+   
+    .bigimgbox {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+      
+        .imgbox {
+          border: 2px solid #4B0082;
+          overflow: hidden;
+          width: 130px; 
+          height: 130px;
+          border-radius: 50%; 
+      
+          .img {
+            margin: 0;
+            padding: 0; 
+            height: 100%;
+            width: 100%;
+            object-fit: cover; 
+          }
         }
-        const token = localStorage.getItem("token")
+      
+        .addFile {
+          position: absolute;
+          top: 0; 
+          .input1 {
+            visibility: hidden;
+          }
+      
+          .plus {
+            height: 30px;
+            width: 30px;
+          }
+        }
+      }
+      
+      
+      
+      
+      
+      
+    .heading{
+        font-weight: 800;
+        font-size: 40px;
+        line-height: 40px;
+        @media screen and (max-width:400px) {
+            font-size: 30px;
+        }
+    }
+    .input{
+        width: 100%;
+        margin: 0 auto;
+        margin-bottom: 20px;
+        .in1{
+            width: 100%;
+            margin: 0 auto;
+        }
+    }
 
-        const onSubmit= async(data)=>{
-            // console.log(data.file, "1")
-            // setSelectedFile(data.file)
-            data.file=selectedFile
-            // console.log(selectedFile,"file")
-            // console.log(data,"after 1")
-                 try {
-                  setLoader(true)
-                   const response = await API.updateProfile(data, token);
-                   console.log(response);
-                   if (response?.success) {
-                     toast.success(response?.message);
-                    //  console.log(response,"6")
-                   } else {
-                     console.log({ response });
-                     toast.error(response?.message);
-                   }
-                 } catch (error) {
-                   console.log(error);
-                 }
-                 finally{
-                  setLoader(false)
-                 }
-               };
-
-               useEffect(()=>{
-                getUserProfile();
-               },[])
-
-
-               const getUserProfile=async()=>{
-                try {
-                    const response = await API.getProfile(token)
-                    console.log(response,"im from end")
-                    
-                    console.log(response.data.avatar)
-                    if(response?.success){
-                        // toast.success(response?.message)
-                        // console.log("I am success")
-                        setprofileData(response.data)
+    .form{
+        .inputs{
+            .address{
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                margin:0 10px;
+                // margin-top: 20px;
+                // margin-bottom: 35px;
+                .showhide{
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-around;
+                    position: relative;
+                    .hideimg{
+                        // margin-right: 20px;
+                        position: absolute;
+                        right: 10px;
+                        cursor: pointer;
                     }
-                } catch (error) {
-                    console.log(error)
+                }
+
+                .label{
+                    font-weight: 700;
+                    font-size: 18px;
+                    line-height: 18px;
+                    color: #232323;
+                    // margin-bottom: 4px;
                 }
             }
-            
-
-    const inputRef = useRef(null);
-
-    const handleAddClick = () => {
-        inputRef.current.click();
-    };
-
-    const handleFileUpload = (event) => {
-        const file = event.target.files[0];
-        setSelectedFile(file);
-    };
-
-    const imageUrl = `${process.env.REACT_APP_API_URL}${profileData.avatar}`;
-
-
-  return (
-    <div className={styles.loginbox}>
-      <h1 className={styles.heading}>{"Update Profile"}</h1>
-      <div className={styles.bigimgbox}>
-        <div className={styles.imgbox}>
-            <img src={selectedFile ? URL.createObjectURL(selectedFile) : profileData.avatar===null ? userupdate : imageUrl} alt="User" className={styles.img} />
-            {/* <img src={selectedFile ? URL.createObjectURL(selectedFile) : userupdate} alt="User" className={styles.img} /> */}
-            <div className={styles.addFile} >
-              <img src={plusicon} alt="Add File" className={styles.plus} onClick={handleAddClick} style={{cursor:"pointer"}} />
-              <input name="avatar" ref={inputRef} control={control} type="file" 
-                style={{display:"none"}} onChange={handleFileUpload} />
-            </div> 
-        </div>
-       </div>  
-    <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-      <div className={styles.inputs}>         
-        <div className={styles.address}>
-          <label className={styles.label}>Full name</label>
-          <InputBox name="name" control={control} required type="text" />
-        </div>
-        <p className={styles.error}>{errors.username?.message}</p>
-
-        <div className={styles.address}>
-          <label className={styles.label}>Phone number</label>
-          <InputBox name="phone" control={control}  required type="text"/>
-        </div>
-        <p className={styles.error}>{errors.phone?.message}</p>
-
-        <div className={styles.address}>
-          <label className={styles.label}>Email Address</label>
-          <InputBox name="email" control={control} required  type="text"/>
-        </div> 
-        <p className={styles.error}>{errors.email?.message}</p>
-      </div>
-
-      <div className={styles.btndiv} >
-
-        {loader===false ? <Button btntext={"Update"} handleClick={log}/> :
-        <Button btntext={<ClipLoader/>} handleClick={log}/> }
-      </div>
-    </form>
- 
-    </div>
-  )
+        }
+    }
+   
+    .btndiv{
+        margin-top: 50px;
+        cursor: pointer;
+        margin-bottom: 30px;
+    }
 }
-
-export default UpdateProfile
-
-
-this is my update profile logic when i get the profile data i want that data to be prefilled with the exsisting details in the input box 
-
-
-1.Fixed header position ✅ 
-2.Button : hover effect ✅
-3.Placeholder in inputs ✅
-4.Password eyeimg toggle✅
-5.Cateogy shimmer remove✅ 
-6.Isactive funct header ✅
-7.On signup navigate "/"✅
-8.Login validtion remove✅
-9.Validation onchange
+.error{
+    color: red;
+}
+.loader{
+    color: #4B0082;
+    width: 100%;
+    display: flex;
+    margin-top: 10px;
+    justify-content: center;
+    font-size: 20px;
+}

@@ -6,7 +6,7 @@ const UpdateShimmerUI = () => {
   return (
     <div className={styles.shimmer}>
         <div className={styles.b1}>
-            Loading Profile Details....
+            {/* Loading Profile Details.... */}
         </div>
         <div className={styles.b2}> 
             <ClipLoader/>
