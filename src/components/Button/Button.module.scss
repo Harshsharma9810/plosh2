@@ -79,3 +79,21 @@
     width: 20px;
     margin-right: 10px;
 }
+.button5{
+    @media screen and (max-width:653px) {
+        width: 200px;
+        font-size: 18px;
+    }
+    @media screen and (max-width:414px) {
+        width: 130px;
+        font-size: 12px;
+        padding: 0px ;
+        height: 40px;
+
+    }
+}
+.btndiv{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

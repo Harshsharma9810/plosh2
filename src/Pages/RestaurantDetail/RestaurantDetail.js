@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from "./RestaurantDetail.module.scss";
 import { useLocation } from 'react-router-dom';
 import restbigimg from "../../components/Images/restbigimg.jpg"
@@ -14,10 +14,33 @@ import mail from "../../components/Images/mail.png"
 import BackButton from '../../components/common/BackButton/BackButton';
 import MenuComponent from '../../components/MenuComponent/MenuComponent';
 import Button from "../../components/Button/Button"
+import ReviewCard from '../../components/ReviewCard/ReviewCard';
+import { API } from '../../API/APIS';
+
 
 const RestaurantDetail = () => {
   const location = useLocation();
   const { restaurant } = location.state || {};
+
+  const [reviewList,setReviewList] = useState([])
+
+  useEffect(()=>{
+    console.log(restaurant._id,"1")
+    const restaurantId = restaurant._id;
+    console.log(restaurantId,"2")
+
+    getReviewList(restaurantId)
+  },[])
+  const getReviewList = async (restaurantId) => {
+
+    try {
+      const response = await API.ReviewList(restaurantId);
+      console.log(response.data,"5")
+      setReviewList(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   
 
   return (
@@ -26,7 +49,7 @@ const RestaurantDetail = () => {
         <div className={styles.detail}>
           {/* PHOTO TOPBOX */}
           <div className={styles.photobox}>
-          
+            {/* <BackButton/> */}
             <div className={styles.imgdiv}>
               <img src={restbigimg} alt='img' className={styles.image}/>
               <div className={styles.overlay}></div> 
@@ -63,7 +86,6 @@ const RestaurantDetail = () => {
               </div>
             </div>
           </div>
-          {/* <BackButton/> */}
 
           {/* ABOUT BOX */}
           <div className={styles.aboutbox}>
@@ -123,17 +145,33 @@ const RestaurantDetail = () => {
               </div>
             </div>
 
-          <div className={styles.reviewbigbox}>
-            <div className={styles.topreviewbox}>
-              <span className={styles.heading}>Reviews</span>
-              <div>
+            {/* Review */}
+            <div className={styles.reviewbigbox}>
+              <div className={styles.topreviewbox}>
+                <span className={styles.heading}>Reviews</span>
+                <div>
+                 <Button styleType={"button5"} img={review} btntext={"Write a Review"}/>
+                </div>
+              </div>
 
-              <Button img={review} btntext={"Write a Review"}/>
+              <div className={styles.bottombox}>
+              {
+                reviewList.length===0? <div className={styles.nocomments}>No Comments Found </div>: 
+              
+
+                reviewList.map((restaurant, index) => (
+                <ReviewCard
+                  resData={restaurant}
+                />))}
               </div>
             </div>
-          </div>
-          </div>
+
+            {/* View More */}
+            <div className={styles.morecomments}>
+              <span className={styles.viewmore}>{reviewList.length!==0 && "View more comments"}</span>
+            </div>
         </div>
+      </div>
       }
     </>
   )

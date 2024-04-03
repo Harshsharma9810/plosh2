@@ -5,9 +5,17 @@ const Button = (props) => {
   return (
       <button className={`${styles.button} ${styles[props?.styleType]}`} 
       onClick={()=>props?.handleClick()}>
-             {props.img && <img className={styles.img} src={props.img} alt="img"
-             />}
-              {props.btntext}</button>
+        <div className={styles.btndiv}>
+          <span>
+
+             {props.img && <img className={styles.img} src={props.img} alt="img"/>}
+          </span>
+          <span>
+
+              {props.btntext}
+          </span>
+        </div>
+              </button>
   )
 }
 

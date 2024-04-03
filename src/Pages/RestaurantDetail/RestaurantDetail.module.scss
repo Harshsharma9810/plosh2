@@ -235,6 +235,7 @@
     
     
     
+    
     .aboutbox{
       // margin-top: 200px;
         margin-top: 20px; 
@@ -427,8 +428,30 @@
             margin-bottom: 10px;
             @media screen and (max-width:450px) {
               font-size: 30px;
+              padding-left: 10px;
+
             }
         }
+      }
+      .bottombox{
+        padding-top: 20px;
+        // padding-bottom: 10px;
+        font-size: 20px;
+        font-weight: 400;
+        color: rgba(35, 35, 35, 1);
+      }
+    }
+
+    .morecomments{
+      padding: 25px 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .viewmore{
+        font-weight: 500;
+        font-size: 25px;
+        color: rgba(75, 0, 130, 1);
+        cursor: pointer;
       }
     }
   }

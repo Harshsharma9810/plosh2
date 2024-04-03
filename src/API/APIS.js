@@ -156,7 +156,22 @@ async ChangePassword(params,token){
     console.log(error)
     return error?.response?.data
   }
-}
+},
+
+//Review List
+
+async ReviewList(restaurantId){
+  console.log(restaurantId,"3")
+  try {
+    const response = await AxiosInstance.post("/review/list",{restaurantId},
+    )
+    console.log(response?.data?.message,"4")
+    return response?.data
+  } catch (error) {
+    // console.log(error)
+    return error?.response?.data
+  }
+},
 
 }
 
