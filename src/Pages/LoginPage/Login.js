@@ -5,10 +5,7 @@ import InputBox from '../../components/InputBox/InputBox';
 import plosh from "../../components/Images/plosh.png"
 import Button from '../../components/Button/Button';
 import { API } from '../../API/APIS';
-import hide from "../../components/Images/hide.png"
 import {useNavigate } from 'react-router-dom';
-import * as yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
 import {toast } from "react-toastify";
 import ClipLoader from "../../components/common/Spinner"
 import { FaEyeSlash } from "react-icons/fa";

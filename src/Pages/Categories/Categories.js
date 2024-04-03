@@ -9,7 +9,6 @@ import lebanese from "../../components/Images/lebanese.png"
 import Caribean from "../../components/Images/caribean.png"
 import korean from "../../components/Images/korean.png"
 import { API } from '../../API/APIS';
-import CategoryShimmerUI from '../../components/common/CategoryShimmerUI/CategoryShimmerUI'
 import ClipLoader from "../../components/common/Spinner"
 
 

@@ -13,11 +13,11 @@ import logout from "../Images/logout.png"
 
 
 const SideMenu = ({isMenuVisible,setIsMenuVisible,token}) => {
+
     const navigate= useNavigate();
     const changeform=()=>{
-          localStorage.removeItem("isLogin");
           localStorage.removeItem("token")
-        //   setIsLogin(false);
+          localStorage.removeItem('listactive1')
           navigate("/")
           setIsMenuVisible(false)
           toast.success("You Have logged out succesfully")

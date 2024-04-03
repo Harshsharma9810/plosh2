@@ -43,7 +43,7 @@ const RestaurantCard = ({resData,images,images1}) => {
                 {/* <img src={img2} className={styles.img1} alt='img2'/>  working fine hardcodeimg2*/}
                 {/* <div> */}
 
-                <img src={icecream} className={styles.img1} alt='img1'/>
+                <img src={icecream} className={styles.img2} alt='img1'/>
                 {/* </div> */}
 
                 {/* <div className={styles.viewmore}>

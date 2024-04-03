@@ -3,7 +3,6 @@ import { useForm } from 'react-hook-form';
 import styles from "./ChangePassword.module.scss"
 import InputBox from '../../components/InputBox/InputBox';
 import Button from '../../components/Button/Button';
-import hide from "../../components/Images/hide.png"
 import plosh from "../../components/Images/plosh.png"
 import {useNavigate } from 'react-router-dom';
 import { API } from '../../API/APIS';
