@@ -1,3 +1,4 @@
+import { Axios } from 'axios';
 import {AxiosInstance} from './AxiosInstance'
 
 
@@ -141,7 +142,7 @@ async getProfile(token){
 
 // Change Password
 async ChangePassword(params,token){
-  console.log(params,"3")
+  // console.log(params,"3")
   try {
     const response = await AxiosInstance.post("user/change_password",{...params},
     {
@@ -150,10 +151,10 @@ async ChangePassword(params,token){
       },
     }
     )
-    console.log(response?.data?.message,"4")
+    // console.log(response?.data?.message,"4")
     return response?.data
   } catch (error) {
-    console.log(error)
+    // console.log(error)
     return error?.response?.data
   }
 },
@@ -161,17 +162,37 @@ async ChangePassword(params,token){
 //Review List
 
 async ReviewList(restaurantId){
-  console.log(restaurantId,"3")
+  // console.log(restaurantId,"3")
   try {
     const response = await AxiosInstance.post("/review/list",{restaurantId},
     )
-    console.log(response?.data?.message,"4")
+    // console.log(response?.data?.message,"4")
     return response?.data
   } catch (error) {
     // console.log(error)
     return error?.response?.data
   }
 },
+
+// Add Review
+
+async AddReview(params,token){
+  console.log(params,"3")
+  console.log(token,"from api")
+
+  try {
+    const response = await AxiosInstance.post("/create/review",{...params}, {
+      headers:{
+        "x-access-token":token
+      },
+    })
+    console.log(response?.data)
+    return response?.data
+
+  } catch (error) {
+    console.log(error)
+  }
+}
 
 }
 

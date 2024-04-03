@@ -16,33 +16,51 @@ import MenuComponent from '../../components/MenuComponent/MenuComponent';
 import Button from "../../components/Button/Button"
 import ReviewCard from '../../components/ReviewCard/ReviewCard';
 import { API } from '../../API/APIS';
+import ClipLoader from "../../components/common/Spinner"
+import Modal from '../../components/Modal/Modal';
+
 
 
 const RestaurantDetail = () => {
+  const [loader,setLoader] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
+  const [visibleReviews, setVisibleReviews] = useState(2); // Initially show 2 reviews
+  const handleViewMoreComments = () => {
+    setVisibleReviews(visibleReviews + 2); 
+  };
+
+
+
   const location = useLocation();
   const { restaurant } = location.state || {};
 
   const [reviewList,setReviewList] = useState([])
 
   useEffect(()=>{
-    console.log(restaurant._id,"1")
     const restaurantId = restaurant._id;
-    console.log(restaurantId,"2")
 
     getReviewList(restaurantId)
   },[])
   const getReviewList = async (restaurantId) => {
 
     try {
+      setLoader(true)
       const response = await API.ReviewList(restaurantId);
-      console.log(response.data,"5")
+      console.log(response,"review")
       setReviewList(response.data);
     } catch (error) {
       console.log(error);
     }
-  };
-  
+    finally{
+      setLoader(false)
 
+    }
+  };
+
+  const modal = ()=>{
+    setIsOpen(true)
+  }
+ 
   return (
     <>
       {restaurant && 
@@ -150,26 +168,42 @@ const RestaurantDetail = () => {
               <div className={styles.topreviewbox}>
                 <span className={styles.heading}>Reviews</span>
                 <div>
-                 <Button styleType={"button5"} img={review} btntext={"Write a Review"}/>
+                 <Button handleClick={modal} styleType={"button5"} img={review} btntext={"Write a Review"}/>
                 </div>
               </div>
 
               <div className={styles.bottombox}>
-              {
+              <div>
+              {isOpen && <Modal setIsOpen={setIsOpen} resData={restaurant} />}
+            </div>
+              {/* {
+                loader ? <ClipLoader/> : 
                 reviewList.length===0? <div className={styles.nocomments}>No Comments Found </div>: 
-              
-
-                reviewList.map((restaurant, index) => (
+                reviewList.map((reviewdata, index) => (
                 <ReviewCard
-                  resData={restaurant}
-                />))}
+                  reviewData={reviewdata}
+                />))} */}
+                {loader ? <ClipLoader /> :
+                reviewList.length === 0 ? 
+                <div className={styles.nocomments}>No Comments Found</div> :
+                  reviewList.slice(0, visibleReviews).map((reviewdata, index) => (
+                    <ReviewCard
+                      key={index}
+                      reviewData={reviewdata}
+                    />
+                  ))
+              }
               </div>
             </div>
 
             {/* View More */}
-            <div className={styles.morecomments}>
+            {/* <div className={styles.morecomments}>
               <span className={styles.viewmore}>{reviewList.length!==0 && "View more comments"}</span>
-            </div>
+            </div> */}
+             {reviewList.length > visibleReviews && 
+            <div className={styles.morecomments}>
+              <span className={styles.viewmore} onClick={handleViewMoreComments}>View more comments</span>
+            </div>}
         </div>
       </div>
       }
@@ -178,3 +212,4 @@ const RestaurantDetail = () => {
 }
 
 export default RestaurantDetail;
+

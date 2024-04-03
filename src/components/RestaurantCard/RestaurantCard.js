@@ -59,16 +59,17 @@ const RestaurantCard = ({resData,images,images1}) => {
                     <div className={styles.barnum}>
 
                         <div className={styles.bar}>
-                        <div className={styles.barspan} style={{ width: `${AuthenticityPercentage}%` }}></div>
+                        <div className={styles.barspan} style={{maxWidth:"100%", width: `${AuthenticityPercentage}%` }}></div>
                         </div>
                         <div className={styles.num}>{resData.authenticity}</div>
+                        {/* <div className={styles.num}>{resData.authenticity >10 ? 10 : resData.authenticity}</div> */}
                     </div>
                 </div>
                 <div className={styles.auth}>
                     <div className={styles.head}>Taste</div>
                     <div className={styles.barnum}>
                         <div className={styles.bar}>
-                            <div className={styles.barspan} style={{ width: `${ratingPercentage}%` }}></div>
+                            <div className={styles.barspan} style={{maxWidth:"100%", width: `${ratingPercentage}%` }}></div>
                         </div>
                         <div className={styles.num}>{resData.rating}</div>
                     </div>
