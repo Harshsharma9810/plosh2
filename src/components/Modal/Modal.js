@@ -47,23 +47,23 @@ const Modal = ({ setIsOpen, resData }) => {
         taste:tasteValue,
         restaurant:resData._id
     }
-    console.log(formvalues, "after submit");
+    // console.log(formvalues, "after submit");
     AddReview(formvalues)
     setIsOpen(false)
   };
 
   const cancel = ()=>{
     setIsOpen(false)
-    console.log(resData,"im data")
+    // console.log(resData,"im data")
 
   }
   const token = localStorage.getItem("token")
 //   console.log(token,"from token")
   const AddReview=async(formvalues)=>{
-    console.log(formvalues)
+    // console.log(formvalues)
     try {
         const response= await API.AddReview(formvalues,token)
-        console.log(response)
+        // console.log(response)
         if(response?.success){
             toast.success(response?.message)
           }
@@ -93,7 +93,7 @@ const Modal = ({ setIsOpen, resData }) => {
               <div className={styles.info}>
                 <div className={styles.auth}>
                   <div className={styles.head}>
-                    Authenticity{" "}
+                    Authenticity
                     <Sliding value={authenticityValue} setValue={setAuthenticityValue} />
                   </div>
                 </div>

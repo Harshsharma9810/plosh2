@@ -3,7 +3,7 @@ import styles from "./ReviewCard.module.scss"
 import reviewimage from "../Images/reviewimage.png"
 const ReviewCard = (reviewData) => {
     const data = reviewData.reviewData;
-    console.log(data,"from reviewcard")
+    // console.log(data,"from reviewcard")
     const profileimage = `${process.env.REACT_APP_API_URL}${data.user.avatar}`
   return (
     <div className={styles.reviewcard}>
